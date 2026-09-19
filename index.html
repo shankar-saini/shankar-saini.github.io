@@ -1,155 +1,554 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shankar | Frontend Developer</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shankar Saini — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0b0e13;
+    --bg-alt: #10141b;
+    --bg-card: #131822;
+    --line: #232a35;
+    --text: #dfe4ea;
+    --text-dim: #838d9d;
+    --accent: #f0a83c;
+    --accent-soft: rgba(240,168,60,0.12);
+    --teal: #56cfc9;
+    --pink: #e07ee0;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent); color:#0a0d12;}
+  a{color:inherit;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  img{max-width:100%;}
+
+  /* ---- Scroll progress bar ---- */
+  .progress-bar{
+    position:fixed; top:0; left:0; height:3px; width:0%;
+    background:linear-gradient(90deg, var(--accent), var(--teal));
+    z-index:999; transition:width .1s linear;
+  }
+
+  /* ---- Navbar ---- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(11,14,19,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-wrap{
+    max-width:1100px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+  }
+  .logo{
+    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:17px;
+    color:#f2f4f7; text-decoration:none; display:flex; align-items:center; gap:6px;
+  }
+  .logo .brace{color:var(--accent);}
+  nav ul{list-style:none; display:flex; gap:6px;}
+  nav a{
+    font-family:'JetBrains Mono',monospace; font-size:13.5px;
+    text-decoration:none; color:var(--text-dim);
+    padding:8px 16px; border-radius:999px;
+    transition:color .2s, background .2s;
+    position:relative;
+  }
+  nav a:hover{color:var(--text); background:rgba(255,255,255,0.04);}
+  nav a.active{color:var(--accent); background:var(--accent-soft);}
+  .nav-toggle{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;}
+  .nav-toggle span{width:22px; height:2px; background:var(--text);}
+
+  @media (max-width:780px){
+    nav ul{
+      position:fixed; top:60px; right:0; left:0;
+      background:var(--bg-alt); flex-direction:column; gap:0;
+      border-bottom:1px solid var(--line);
+      transform:translateY(-130%); transition:transform .3s ease;
+      padding:10px 0;
+    }
+    nav ul.open{transform:translateY(0);}
+    nav a{display:block; border-radius:0; padding:14px 28px;}
+    .nav-toggle{display:flex;}
+  }
+
+  /* ---- Section shell ---- */
+  section{
+    max-width:1100px; margin:0 auto;
+    padding:110px 28px;
+  }
+  @media (max-width:780px){ section{padding:70px 22px;} }
+
+  .divider{
+    max-width:1100px; margin:0 auto; padding:0 28px;
+  }
+  .divider-line{
+    height:1px; background:var(--line);
+    position:relative; overflow:hidden;
+  }
+  .divider-line::after{
+    content:''; position:absolute; left:0; top:0; bottom:0;
+    width:0%; background:linear-gradient(90deg, var(--accent), transparent);
+    transition:width 1.1s cubic-bezier(.22,.9,.32,1);
+  }
+  .divider-line.seen::after{width:100%;}
+
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace; font-size:13px;
+    color:var(--teal); margin-bottom:14px;
+  }
+  h2{
+    font-family:'JetBrains Mono',monospace; font-weight:800;
+    font-size:clamp(24px,3.2vw,32px); color:#f2f4f7; margin-bottom:40px;
+  }
+
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.seen{opacity:1; transform:translateY(0);}
+  .reveal-delay-1.seen{transition-delay:.08s;}
+  .reveal-delay-2.seen{transition-delay:.16s;}
+  .reveal-delay-3.seen{transition-delay:.24s;}
+
+  /* ---- Hero ---- */
+  #home{
+    padding-top:90px; padding-bottom:90px;
+    min-height:88vh; display:flex; flex-direction:column; justify-content:center;
+  }
+  .terminal{
+    background:var(--bg-card); border:1px solid var(--line); border-radius:10px;
+    max-width:560px; overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,0.35);
+    margin-bottom:36px;
+  }
+  .terminal-bar{
+    display:flex; align-items:center; gap:8px;
+    padding:10px 14px; background:var(--bg-alt); border-bottom:1px solid var(--line);
+  }
+  .t-dot{width:10px; height:10px; border-radius:50%;}
+  .t-dot.r{background:#ff5f56;} .t-dot.y{background:#ffbd2e;} .t-dot.g{background:#27c93f;}
+  .terminal-body{padding:20px 22px; font-family:'JetBrains Mono',monospace; font-size:14px; line-height:1.85;}
+  .t-kw{color:var(--pink);} .t-fn{color:var(--teal);} .t-str{color:#9fd66b;} .t-cm{color:var(--text-dim);}
+  .cursor{display:inline-block; width:8px; height:16px; background:var(--accent); vertical-align:middle; animation:blink 1s step-end infinite;}
+  @keyframes blink{50%{opacity:0;}}
+
+  h1{
+    font-family:'JetBrains Mono',monospace; font-weight:800;
+    font-size:clamp(32px,5.5vw,52px); line-height:1.12; color:#f2f4f7; margin-bottom:18px;
+  }
+  #role-line{color:var(--accent);}
+  .hero-desc{font-size:16.5px; line-height:1.75; color:var(--text-dim); max-width:540px; margin-bottom:34px;}
+
+  .btn-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    font-family:'JetBrains Mono',monospace; font-size:13.5px;
+    padding:13px 26px; border-radius:999px;
+    text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+    transition:transform .2s, box-shadow .2s, background .2s;
+  }
+  .btn-primary{background:var(--accent); color:#0a0d12; font-weight:700;}
+  .btn-primary:hover{transform:translateY(-3px); box-shadow:0 10px 26px rgba(240,168,60,0.3);}
+  .btn-ghost{border:1px solid var(--line); color:var(--text);}
+  .btn-ghost:hover{border-color:var(--accent); color:var(--accent); transform:translateY(-3px);}
+
+  /* ---- About ---- */
+  .about-grid{display:grid; grid-template-columns:180px 1fr; gap:44px; align-items:start;}
+  @media (max-width:700px){ .about-grid{grid-template-columns:1fr;} }
+  .avatar{
+    width:150px; height:150px; border-radius:50%;
+    background:linear-gradient(135deg, var(--accent), var(--pink));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono',monospace; font-weight:800; font-size:42px; color:#0a0d12;
+    overflow:hidden;
+  }
+  .avatar img{width:100%; height:100%; object-fit:cover; display:block;}
+  .about-body p{color:var(--text-dim); font-size:15.5px; line-height:1.85; margin-bottom:16px; max-width:600px;}
+  .skills{display:flex; flex-wrap:wrap; gap:9px; margin-top:20px;}
+  .skill-pill{
+    font-family:'JetBrains Mono',monospace; font-size:12.5px;
+    padding:7px 15px; border:1px solid var(--line); border-radius:999px; color:var(--teal);
+    transition:border-color .2s, transform .2s;
+  }
+  .skill-pill:hover{border-color:var(--teal); transform:translateY(-2px);}
+
+  /* ---- Skill bars ---- */
+  .bars{max-width:520px; margin-top:16px;}
+  .bar-row{margin-bottom:20px;}
+  .bar-label{display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--text-dim); margin-bottom:8px;}
+  .bar-track{height:6px; background:var(--line); border-radius:99px; overflow:hidden;}
+  .bar-fill{height:100%; width:0%; border-radius:99px; background:linear-gradient(90deg, var(--accent), var(--teal)); transition:width 1.2s cubic-bezier(.22,.9,.32,1);}
+  .bar-row.seen .bar-fill{width:var(--pct);}
+
+  /* ---- Projects ---- */
+  .project-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  @media (max-width:700px){ .project-grid{grid-template-columns:1fr;} }
+  .project{
+    border:1px solid var(--line); border-radius:12px; padding:26px;
+    background:var(--bg-card);
+    transition:border-color .25s, transform .25s, box-shadow .25s;
+  }
+  .project:hover{border-color:var(--accent); transform:translateY(-5px); box-shadow:0 16px 40px rgba(0,0,0,0.35);}
+  .project-top{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:10px;}
+  .project-name{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16.5px; color:#f2f4f7;}
+  .project-link{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--accent); text-decoration:none; white-space:nowrap;}
+  .project-link:hover{text-decoration:underline;}
+  .project-desc{color:var(--text-dim); font-size:14.5px; line-height:1.65; margin-bottom:16px;}
+  .stack{display:flex; flex-wrap:wrap; gap:7px;}
+  .stack span{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--text-dim); border:1px solid var(--line); padding:3px 10px; border-radius:99px;}
+
+  /* ---- Timeline ---- */
+  .timeline{position:relative; padding-left:30px; max-width:640px;}
+  .timeline::before{content:''; position:absolute; left:6px; top:6px; bottom:6px; width:1px; background:var(--line);}
+  .t-item{position:relative; padding-bottom:36px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-dot2{
+    position:absolute; left:-30px; top:4px; width:13px; height:13px; border-radius:50%;
+    background:var(--bg); border:2px solid var(--accent);
+  }
+  .t-role{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15.5px; color:#f2f4f7;}
+  .t-meta{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--teal); margin:4px 0 8px;}
+  .t-desc{color:var(--text-dim); font-size:14.5px; line-height:1.65; max-width:520px;}
+
+  /* ---- Contact ---- */
+  .contact-wrap{display:flex; flex-direction:column; align-items:flex-start; gap:28px;}
+  .contact-desc{color:var(--text-dim); font-size:15.5px; max-width:480px; line-height:1.75;}
+  .pill-row{display:flex; flex-wrap:wrap; gap:12px;}
+  .pill-link{
+    font-family:'JetBrains Mono',monospace; font-size:13.5px;
+    padding:11px 22px; border-radius:999px; border:1px solid var(--line);
+    text-decoration:none; color:var(--text);
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform .2s, border-color .2s, color .2s;
+  }
+  .pill-link:hover{transform:translateY(-3px); border-color:var(--accent); color:var(--accent);}
+  .pill-link.primary{background:var(--accent); color:#0a0d12; border-color:var(--accent); font-weight:700;}
+  .pill-link.primary:hover{color:#0a0d12; box-shadow:0 10px 26px rgba(240,168,60,0.3);}
+
+  /* ---- Contact form ---- */
+  .contact-form{
+    width:100%; max-width:480px;
+    display:flex; flex-direction:column; gap:16px;
+    margin-top:6px;
+  }
+  .form-group{display:flex; flex-direction:column; gap:7px;}
+  .form-group label{
+    font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--text-dim);
+  }
+  .form-group input, .form-group textarea{
+    background:var(--bg-card); border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; color:var(--text); font-family:'Inter',sans-serif; font-size:14.5px;
+    transition:border-color .2s;
+  }
+  .form-group input:focus, .form-group textarea:focus{
+    outline:none; border-color:var(--accent);
+  }
+  .form-group textarea{resize:vertical; min-height:100px;}
+  .form-submit{
+    font-family:'JetBrains Mono',monospace; font-size:13.5px; font-weight:700;
+    padding:13px 26px; border-radius:999px; border:none; cursor:pointer;
+    background:var(--accent); color:#0a0d12; align-self:flex-start;
+    transition:transform .2s, box-shadow .2s;
+  }
+  .form-submit:hover{transform:translateY(-3px); box-shadow:0 10px 26px rgba(240,168,60,0.3);}
+  .form-note{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--teal); margin-top:4px; display:none;}
+  .form-note.show{display:block;}
+
+  footer{
+    text-align:center; padding:30px 28px;
+    font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-dim);
+    border-top:1px solid var(--line);
+  }
+
+  /* ---- Back to top ---- */
+  #toTop{
+    position:fixed; bottom:26px; right:26px; z-index:90;
+    width:44px; height:44px; border-radius:50%;
+    background:var(--bg-card); border:1px solid var(--line); color:var(--accent);
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    font-family:'JetBrains Mono',monospace; font-size:16px;
+    opacity:0; pointer-events:none; transform:translateY(10px);
+    transition:opacity .3s, transform .3s, border-color .3s;
+  }
+  #toTop.show{opacity:1; pointer-events:auto; transform:translateY(0);}
+  #toTop:hover{border-color:var(--accent);}
+</style>
 </head>
-
 <body>
-    <!-- Header -->
-    <header>
-        <div class="header-container">
-            <h1 class="logo-title">
-               💻 Shankar's Portfolio
-            </h1>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <!-- Home -->
-    <section id="home" class="section-padding">
-        <h2>Hi, I'm Shankar 👋</h2>
-        <img src="my-photo.jpg" alt="Shankar's Profile Picture" class="profile-img">
-        <h3>I'm learning Frontend Development</h3>
-        <p>
-            Welcome to my personal website. I'm learning how to create
-            modern, simple and responsive websites using HTML and CSS.
-        </p>
-        <p>
-            My goal is to become a skilled web developer and build
-            useful websites that look good on every device.
-        </p>
-        <a href="#projects" class="btn">View My Projects</a>
-    </section>
+<div class="progress-bar" id="progressBar"></div>
 
-    <!-- About -->
-    <section id="about" class="section-padding">
-        <h2>About Me</h2>
-        <p>
-            Hello! My name is Shankar. I'm currently learning web
-            development and improving my HTML and CSS skills.
-        </p>
-        <p>
-            I enjoy creating websites, experimenting with different
-            designs and learning new things about technology.
-        </p>
-        <p>
-            Right now, I'm focusing on building a strong foundation
-            in frontend development.
-        </p>
-    </section>
+<header>
+  <div class="nav-wrap">
+    <a href="#home" class="logo"><span class="brace">&lt;</span>Shankar Saini<span class="brace">/&gt;</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav>
+      <ul id="navList">
+        <li><a href="#home" class="nav-link active">home</a></li>
+        <li><a href="#about" class="nav-link">about</a></li>
+        <li><a href="#skills" class="nav-link">skills</a></li>
+        <li><a href="#projects" class="nav-link">projects</a></li>
+        <li><a href="#experience" class="nav-link">experience</a></li>
+        <li><a href="#contact" class="nav-link">contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-    <!-- Skills -->
-    <section id="skills" class="section-padding">
-        <h2>My Skills</h2>
-        <ul class="skills-list">
-            <li>HTML5</li>
-            <li>CSS</li>
-            <li>Responsive Web Design</li>
-            <li>Basic JavaScript</li>
-            <li>SEO</li>
-        </ul>
-    </section>
-
-    <!-- Projects -->
-<section id="projects" class="section-padding">
-    <h2>My Projects</h2>
-    <div class="project-card">
-        <h3>Personal Portfolio Website</h3>
-        <p>
-            My very first web development project built from scratch to showcase my skills. 
-            Through this project, I learned semantic HTML structure, modern CSS styling, 
-            and hosting/deployment using GitHub Pages.
-        </p>
-        <p><strong>Technologies:</strong> HTML5, CSS3, GitHub Pages</p>
-        <a href="https://github.io" class="btn-secondary" target="_blank">View Live Project</a>
+<section id="home">
+  <div class="terminal reveal">
+    <div class="terminal-bar">
+      <span class="t-dot r"></span><span class="t-dot y"></span><span class="t-dot g"></span>
     </div>
+    <div class="terminal-body">
+      <div><span class="t-kw">const</span> <span class="t-fn">developer</span> = {</div>
+      <div>&nbsp;&nbsp;name: <span class="t-str">'Shankar Saini'</span>,</div>
+      <div>&nbsp;&nbsp;role: <span id="role-line" class="t-str">'BCA Student'</span><span class="cursor"></span>,</div>
+      <div>&nbsp;&nbsp;location: <span class="t-str">'Jaipur, India'</span></div>
+      <div>};</div>
+    </div>
+  </div>
+  <h1 class="reveal">Building my way<br>into web development.</h1>
+  <p class="hero-desc reveal">BCA student aur SEO Executive jo web development seekh raha hai — HTML, CSS aur JavaScript ke saath apni skills roz build kar raha hoon.</p>
+  <div class="btn-row reveal">
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+    <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+  </div>
 </section>
 
+<div class="divider"><div class="divider-line reveal"></div></div>
 
-    <!-- Why Me -->
-    <section id="Learning-Web-Development" class="section-padding">
-        <h2>Why I'm Learning Web Development</h2>
-        <p>
-            I want to learn how websites are built from scratch and
-            eventually create professional websites for real users.
-        </p>
-        <p>
-            I'm currently practicing by building small projects and
-            improving my design and coding skills every day.
-        </p>
-    </section>
+<section id="about">
+  <div class="eyebrow reveal">// 01</div>
+  <h2 class="reveal">About me</h2>
+  <div class="about-grid">
+    <div class="avatar reveal"><img src="my-photo.jpg" alt="Shankar Saini"></div>
+    <div class="about-body reveal reveal-delay-1">
+      <p>Main Jaipur, Rajasthan se BCA student hoon aur Appco Software me SEO Executive ke taur par kaam karta hoon. Web development seekhna abhi mera main focus hai — har din thoda naya seekhta hoon.</p>
+      <p>SEO background hone ki wajah se mujhe pata hai website sirf achhi dikhni nahi chahiye, fast aur search-friendly bhi honi chahiye. Yehi soch apne projects me laata hoon. Aajkal AI tools bhi explore kar raha hoon ki woh development me kaise madad kar sakte hain.</p>
+      <div class="skills">
+        <span class="skill-pill">HTML5</span>
+        <span class="skill-pill">CSS3</span>
+        <span class="skill-pill">JavaScript</span>
+        <span class="skill-pill">SEO</span>
+        <span class="skill-pill">Git &amp; GitHub</span>
+        <span class="skill-pill">Responsive Design</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Contact -->
-    <section id="contact" class="section-padding">
-        <h2>Contact Me</h2>
-        <p>
-            If you want to connect with me or talk about web development,
-            feel free to contact me.
-        </p>
-        <p>
-            <strong>Email:</strong> <a href="mailto:shankarsaini8107@gmail.com">shankarsaini8107@gmail.com</a>
-        </p>
-        <p>
-            <strong>LinkedIn:</strong>
-            <a href="https://www.linkedin.com/in/shankar-saini/" target="_blank">linkedin.com/in/shankar-saini</a>
-        </p>
-    </section>
+<div class="divider"><div class="divider-line reveal"></div></div>
 
-    <!-- Contact Form Section -->
-    <section class="form-section section-padding">
-        <h2>Send a Message</h2>
-        <form class="contact-form" action="https://formspree.io/f/xdeogvov" method="POST">
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="msg">Message:</label>
-                <textarea id="msg" name="msg" required></textarea>
-            </div>
-            <div class="form-group">
-                <label for="Phone">Phone no:</label>
-                <input type="tel" id="Phone" name="phone_no">
-            </div>
-            <div class="form-group">
-                <label for="About_you">About you:</label>
-                <input type="text" id="About_you" name="about_you">
-            </div>
-            <button type="submit" class="btn">Submit</button>
-        </form>
-    </section>
+<section id="skills">
+  <div class="eyebrow reveal">// 02</div>
+  <h2 class="reveal">Skills</h2>
+  <div class="bars">
+    <div class="bar-row reveal" style="--pct:88%">
+      <div class="bar-label"><span>HTML5</span><span>Strong</span></div>
+      <div class="bar-track"><div class="bar-fill"></div></div>
+    </div>
+    <div class="bar-row reveal reveal-delay-1" style="--pct:80%">
+      <div class="bar-label"><span>CSS3</span><span>Strong</span></div>
+      <div class="bar-track"><div class="bar-fill"></div></div>
+    </div>
+    <div class="bar-row reveal reveal-delay-2" style="--pct:45%">
+      <div class="bar-label"><span>JavaScript</span><span>Learning</span></div>
+      <div class="bar-track"><div class="bar-fill"></div></div>
+    </div>
+    <div class="bar-row reveal reveal-delay-3" style="--pct:75%">
+      <div class="bar-label"><span>SEO</span><span>Working knowledge</span></div>
+      <div class="bar-track"><div class="bar-fill"></div></div>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2026 Shankar. All rights reserved.</p>
-        <p>Made with HTML & CSS ❤️</p>
-    </footer>
+<div class="divider"><div class="divider-line reveal"></div></div>
+
+<section id="projects">
+  <div class="eyebrow reveal">// 03</div>
+  <h2 class="reveal">Projects</h2>
+  <div class="project-grid">
+    <div class="project reveal">
+      <div class="project-top">
+        <span class="project-name">Personal Portfolio</span>
+        <a href="https://github.com/shankar-saini/shankar-saini.github.io" target="_blank" rel="noopener" class="project-link">github ↗</a>
+      </div>
+      <p class="project-desc">Yehi website — HTML aur CSS se bani meri personal profile aur learning journey ki site, GitHub Pages par live hosted.</p>
+      <div class="stack"><span>HTML</span><span>CSS</span><span>GitHub Pages</span></div>
+    </div>
+    <div class="project reveal reveal-delay-1">
+      <div class="project-top">
+        <span class="project-name">Web Development Notes</span>
+        <a href="https://github.com/shankar-saini/web-development-notes" target="_blank" rel="noopener" class="project-link">github ↗</a>
+      </div>
+      <p class="project-desc">HTML5, CSS3 aur JavaScript essentials par meri complete notes repository — concepts, examples aur handy cheat sheets ke saath.</p>
+      <div class="stack"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line reveal"></div></div>
+
+<section id="experience">
+  <div class="eyebrow reveal">// 04</div>
+  <h2 class="reveal">Experience &amp; Education</h2>
+  <div class="timeline">
+    <div class="t-item reveal">
+      <div class="t-dot2"></div>
+      <div class="t-role">SEO Executive</div>
+      <div class="t-meta">Appco Software · Present</div>
+      <div class="t-desc">Websites ki search visibility improve karna, on-page SEO aur content optimization par kaam.</div>
+    </div>
+    <div class="t-item reveal reveal-delay-1">
+      <div class="t-dot2"></div>
+      <div class="t-role">BCA (Bachelor of Computer Applications)</div>
+      <div class="t-meta">Currently pursuing</div>
+      <div class="t-desc">Computer science fundamentals padhte hue, saath saath web development independently seekh raha hoon.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line reveal"></div></div>
+
+<section id="contact">
+  <div class="eyebrow reveal">// 05</div>
+  <h2 class="reveal">Get in touch</h2>
+  <div class="contact-wrap">
+    <p class="contact-desc reveal">Koi project hai dimaag me, ya bas hello kehna hai? Neeche se mujhse contact karo.</p>
+    <div class="pill-row reveal reveal-delay-1">
+      <a href="mailto:shankarsaini8107@gmail.com" class="pill-link primary">✉ Email</a>
+      <a href="https://github.com/shankar-saini" target="_blank" rel="noopener" class="pill-link">GitHub</a>
+      <a href="https://www.linkedin.com/in/shankar-saini/" target="_blank" rel="noopener" class="pill-link">LinkedIn</a>
+      <a href="https://x.com/shankar_saini_5" target="_blank" rel="noopener" class="pill-link">X</a>
+      <a href="https://www.instagram.com/shankar_saini.523/" target="_blank" rel="noopener" class="pill-link">Instagram</a>
+    </div>
+
+    <form class="contact-form reveal reveal-delay-2" action="https://formspree.io/f/xdeogvov" method="POST">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone (optional)</label>
+        <input type="tel" id="phone" name="phone_no">
+      </div>
+      <div class="form-group">
+        <label for="msg">Message</label>
+        <textarea id="msg" name="msg" required></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send Message</button>
+      <span class="form-note" id="formNote">✓ Message sent — thanks for reaching out!</span>
+    </form>
+  </div>
+</section>
+
+<footer>© 2026 Shankar Saini. Built with HTML &amp; CSS.</footer>
+
+<button id="toTop" aria-label="Back to top">↑</button>
+
+<script>
+  // Scroll progress bar
+  const bar = document.getElementById('progressBar');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    bar.style.width = pct + '%';
+  });
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navList = document.getElementById('navList');
+  navToggle.addEventListener('click', () => navList.classList.toggle('open'));
+  navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const navObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(s => navObserver.observe(s));
+
+  // Reveal on scroll (fade/slide, dividers, skill bars)
+  const revealEls = document.querySelectorAll('.reveal, .divider-line, .bar-row');
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('seen');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // Terminal role-line typing cycle
+  const roles = ['BCA Student', 'SEO Executive', 'Aspiring Web Developer'];
+  let ri = 0;
+  const roleEl = document.getElementById('role-line');
+  setInterval(() => {
+    ri = (ri + 1) % roles.length;
+    roleEl.style.opacity = 0;
+    setTimeout(() => {
+      roleEl.textContent = "'" + roles[ri] + "'";
+      roleEl.style.opacity = 1;
+    }, 300);
+  }, 2600);
+  roleEl.style.transition = 'opacity .3s';
+
+  // Back to top button
+  const toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', () => {
+    toTop.classList.toggle('show', window.scrollY > 500);
+  });
+  toTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  // Contact form — submit without leaving the page
+  const form = document.querySelector('.contact-form');
+  const note = document.getElementById('formNote');
+  if(form){
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('.form-submit');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      try{
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if(res.ok){
+          note.classList.add('show');
+          form.reset();
+        } else {
+          note.textContent = 'Something went wrong — try the email link above instead.';
+          note.classList.add('show');
+        }
+      } catch(err){
+        note.textContent = 'Something went wrong — try the email link above instead.';
+        note.classList.add('show');
+      }
+      btn.textContent = 'Send Message';
+      btn.disabled = false;
+    });
+  }
+</script>
 
 </body>
 </html>
