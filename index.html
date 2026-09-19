@@ -20,6 +20,102 @@
     --teal: #56cfc9;
     --pink: #e07ee0;
   }
+  :root[data-theme="light"]{
+    --bg: #f7f5f0;
+    --bg-alt: #efece4;
+    --bg-card: #ffffff;
+    --line: #e0dcd1;
+    --text: #22252b;
+    --text-dim: #6b6f78;
+    --accent-soft: rgba(240,168,60,0.15);
+  }
+
+  /* ---- Theme + color controls ---- */
+  .controls{display:flex; align-items:center; gap:8px; margin-left:10px;}
+  .ctrl-btn{
+    width:34px; height:34px; border-radius:50%;
+    border:1px solid var(--line); background:var(--bg-card);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:15px; color:var(--text);
+    transition:border-color .2s, transform .2s;
+    flex-shrink:0;
+  }
+  .ctrl-btn:hover{border-color:var(--accent); transform:translateY(-2px);}
+  .color-picker-wrap{position:relative; width:34px; height:34px; flex-shrink:0;}
+  .color-picker-wrap input[type="color"]{
+    position:absolute; inset:0; width:100%; height:100%;
+    border:none; border-radius:50%; padding:0; cursor:pointer;
+    background:none;
+  }
+  .color-picker-wrap input[type="color"]::-webkit-color-swatch-wrapper{padding:0; border-radius:50%;}
+  .color-picker-wrap input[type="color"]::-webkit-color-swatch{border:1px solid var(--line); border-radius:50%;}
+
+  /* ---- Custom cursor ---- */
+  .cursor-dot{
+    position:fixed; top:0; left:0; width:9px; height:9px; border-radius:50%;
+    background:var(--accent); pointer-events:none; z-index:9999;
+    transform:translate(-50%,-50%); transition:transform .12s ease, opacity .2s;
+    opacity:0;
+  }
+  .cursor-ring{
+    position:fixed; top:0; left:0; width:32px; height:32px; border-radius:50%;
+    border:1.5px solid var(--accent); pointer-events:none; z-index:9998;
+    transform:translate(-50%,-50%); opacity:0;
+    transition:opacity .2s, width .2s, height .2s, border-color .2s;
+  }
+  .cursor-ring.grow{width:48px; height:48px; border-color:var(--teal);}
+  @media (hover:none), (max-width:780px){
+    .cursor-dot, .cursor-ring{display:none;}
+  }
+
+  /* ---- Corner decoration (vine) ---- */
+  .corner-vine{
+    position:fixed; top:64px; right:0; width:120px; height:340px;
+    pointer-events:none; z-index:1; opacity:.5;
+  }
+  @media (max-width:900px){ .corner-vine{display:none;} }
+
+  /* ---- Fun fact flip card ---- */
+  .fact-card{
+    margin-top:22px; max-width:420px; padding:16px 20px;
+    border:1px dashed var(--line); border-radius:10px;
+    cursor:pointer; display:flex; flex-direction:column; gap:6px;
+    transition:border-color .2s, background .2s;
+  }
+  .fact-card:hover{border-color:var(--teal);}
+  .fact-label{font-size:12.5px; color:var(--teal);}
+  .fact-text{font-size:13px; color:var(--text-dim); display:none; line-height:1.6;}
+  .fact-card.open .fact-label{display:none;}
+  .fact-card.open .fact-text{display:block;}
+
+  /* ---- Mini quiz card ---- */
+  .quiz-card{
+    grid-column:1/-1;
+    border:1px solid var(--line); border-radius:12px; padding:26px;
+    background:var(--bg-card);
+  }
+  .quiz-top{display:flex; align-items:center; gap:10px; margin-bottom:14px;}
+  .quiz-badge{
+    font-family:'JetBrains Mono',monospace; font-size:11px; color:#0a0d12;
+    background:var(--teal); padding:3px 10px; border-radius:99px; font-weight:700;
+  }
+  .quiz-title{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15px; color:#f2f4f7;}
+  .quiz-code{
+    background:var(--bg-alt); border:1px solid var(--line); border-radius:8px;
+    padding:14px 16px; font-family:'JetBrains Mono',monospace; font-size:13.5px;
+    color:var(--text); margin-bottom:16px; overflow-x:auto; white-space:pre;
+  }
+  .quiz-options{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:12px;}
+  .quiz-opt{
+    font-family:'JetBrains Mono',monospace; font-size:13px;
+    padding:9px 18px; border-radius:999px; border:1px solid var(--line);
+    background:transparent; color:var(--text); cursor:pointer;
+    transition:border-color .2s, background .2s;
+  }
+  .quiz-opt:hover{border-color:var(--accent);}
+  .quiz-opt.correct{border-color:#27c93f; background:rgba(39,201,63,0.12); color:#27c93f;}
+  .quiz-opt.wrong{border-color:#ff5f56; background:rgba(255,95,86,0.12); color:#ff5f56;}
+  .quiz-result{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--teal); min-height:18px;}
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   body{
@@ -57,6 +153,7 @@
   }
   .logo .brace{color:var(--accent);}
   nav ul{list-style:none; display:flex; gap:6px;}
+  .nav-right{display:flex; align-items:center; gap:16px;}
   nav a{
     font-family:'JetBrains Mono',monospace; font-size:13.5px;
     text-decoration:none; color:var(--text-dim);
@@ -283,22 +380,44 @@
 </head>
 <body>
 
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<svg class="corner-vine" viewBox="0 0 120 340" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <path d="M118 0 C 80 40, 100 80, 60 110 S 20 160, 50 190 S 90 230, 55 260 S 15 300, 45 338"
+        stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" opacity="0.55"/>
+  <circle cx="60" cy="110" r="4" fill="var(--teal)"/>
+  <circle cx="50" cy="190" r="3" fill="var(--pink)"/>
+  <circle cx="55" cy="260" r="4" fill="var(--accent)"/>
+  <path d="M60 110 q 14 -8 22 2" stroke="var(--teal)" stroke-width="1.2" opacity="0.5"/>
+  <path d="M50 190 q -16 -4 -22 6" stroke="var(--pink)" stroke-width="1.2" opacity="0.5"/>
+  <path d="M55 260 q 14 6 20 -4" stroke="var(--accent)" stroke-width="1.2" opacity="0.5"/>
+</svg>
+
 <div class="progress-bar" id="progressBar"></div>
 
 <header>
   <div class="nav-wrap">
     <a href="#home" class="logo"><span class="brace">&lt;</span>Shankar Saini<span class="brace">/&gt;</span></a>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
-    <nav>
-      <ul id="navList">
-        <li><a href="#home" class="nav-link active">home</a></li>
-        <li><a href="#about" class="nav-link">about</a></li>
-        <li><a href="#skills" class="nav-link">skills</a></li>
-        <li><a href="#projects" class="nav-link">projects</a></li>
-        <li><a href="#experience" class="nav-link">experience</a></li>
-        <li><a href="#contact" class="nav-link">contact</a></li>
-      </ul>
-    </nav>
+    <div class="nav-right">
+      <nav>
+        <ul id="navList">
+          <li><a href="#home" class="nav-link active">home</a></li>
+          <li><a href="#about" class="nav-link">about</a></li>
+          <li><a href="#skills" class="nav-link">skills</a></li>
+          <li><a href="#projects" class="nav-link">projects</a></li>
+          <li><a href="#experience" class="nav-link">experience</a></li>
+          <li><a href="#contact" class="nav-link">contact</a></li>
+        </ul>
+      </nav>
+      <div class="controls">
+        <button class="ctrl-btn" id="themeToggle" aria-label="Toggle dark/light mode" title="Toggle theme">🌙</button>
+        <div class="color-picker-wrap" title="Pick your accent color">
+          <input type="color" id="colorPicker" value="#f0a83c">
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -316,7 +435,7 @@
     </div>
   </div>
   <h1 class="reveal">Building my way<br>into web development.</h1>
-  <p class="hero-desc reveal">BCA student aur SEO Executive jo web development seekh raha hai — HTML, CSS aur JavaScript ke saath apni skills roz build kar raha hoon.</p>
+  <p class="hero-desc reveal">A BCA student and SEO Executive learning web development — building my skills in HTML, CSS and JavaScript, one project at a time.</p>
   <div class="btn-row reveal">
     <a href="#projects" class="btn btn-primary">View Projects</a>
     <a href="#contact" class="btn btn-ghost">Get in Touch</a>
@@ -331,8 +450,8 @@
   <div class="about-grid">
     <div class="avatar reveal"><img src="my-photo.jpg" alt="Shankar Saini"></div>
     <div class="about-body reveal reveal-delay-1">
-      <p>Main Jaipur, Rajasthan se BCA student hoon aur Appco Software me SEO Executive ke taur par kaam karta hoon. Web development seekhna abhi mera main focus hai — har din thoda naya seekhta hoon.</p>
-      <p>SEO background hone ki wajah se mujhe pata hai website sirf achhi dikhni nahi chahiye, fast aur search-friendly bhi honi chahiye. Yehi soch apne projects me laata hoon. Aajkal AI tools bhi explore kar raha hoon ki woh development me kaise madad kar sakte hain.</p>
+      <p>I'm a BCA student based in Jaipur, Rajasthan, working as an SEO Executive. Learning web development is my main focus right now — I pick up something new every day.</p>
+      <p>My SEO background taught me that a website shouldn't just look good — it needs to be fast and search-friendly too. That mindset shapes how I build every project. I've also started exploring how AI tools fit into a developer's workflow.</p>
       <div class="skills">
         <span class="skill-pill">HTML5</span>
         <span class="skill-pill">CSS3</span>
@@ -340,6 +459,10 @@
         <span class="skill-pill">SEO</span>
         <span class="skill-pill">Git &amp; GitHub</span>
         <span class="skill-pill">Responsive Design</span>
+      </div>
+      <div class="fact-card reveal reveal-delay-2" id="factCard">
+        <span class="fact-label mono">🎲 click for a random fact</span>
+        <span class="fact-text mono" id="factText"></span>
       </div>
     </div>
   </div>
@@ -381,7 +504,7 @@
         <span class="project-name">Personal Portfolio</span>
         <a href="https://github.com/shankar-saini/shankar-saini.github.io" target="_blank" rel="noopener" class="project-link">github ↗</a>
       </div>
-      <p class="project-desc">Yehi website — HTML aur CSS se bani meri personal profile aur learning journey ki site, GitHub Pages par live hosted.</p>
+      <p class="project-desc">This very site — my personal profile and learning journey, built with HTML and CSS, hosted live on GitHub Pages.</p>
       <div class="stack"><span>HTML</span><span>CSS</span><span>GitHub Pages</span></div>
     </div>
     <div class="project reveal reveal-delay-1">
@@ -389,8 +512,23 @@
         <span class="project-name">Web Development Notes</span>
         <a href="https://github.com/shankar-saini/web-development-notes" target="_blank" rel="noopener" class="project-link">github ↗</a>
       </div>
-      <p class="project-desc">HTML5, CSS3 aur JavaScript essentials par meri complete notes repository — concepts, examples aur handy cheat sheets ke saath.</p>
+      <p class="project-desc">My complete notes repository on HTML5, CSS3 and JavaScript essentials — concepts, examples and handy cheat sheets.</p>
       <div class="stack"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
+    </div>
+
+    <div class="quiz-card reveal reveal-delay-2">
+      <div class="quiz-top">
+        <span class="quiz-badge">TRY IT</span>
+        <span class="quiz-title">Guess the output</span>
+      </div>
+      <div class="quiz-code">console.log(typeof null);</div>
+      <div class="quiz-options" id="quizOptions">
+        <button class="quiz-opt" data-correct="false">"null"</button>
+        <button class="quiz-opt" data-correct="true">"object"</button>
+        <button class="quiz-opt" data-correct="false">"undefined"</button>
+        <button class="quiz-opt" data-correct="false">Error</button>
+      </div>
+      <div class="quiz-result" id="quizResult"></div>
     </div>
   </div>
 </section>
@@ -403,15 +541,21 @@
   <div class="timeline">
     <div class="t-item reveal">
       <div class="t-dot2"></div>
-      <div class="t-role">SEO Executive</div>
-      <div class="t-meta">Appco Software · Present</div>
-      <div class="t-desc">Websites ki search visibility improve karna, on-page SEO aur content optimization par kaam.</div>
+      <div class="t-role">Learning Web Development</div>
+      <div class="t-meta">Self-taught · Started Sept 2026 · Present</div>
+      <div class="t-desc">Just getting started on my web development journey — currently building a solid foundation in HTML, CSS and JavaScript through hands-on practice and small projects.</div>
     </div>
     <div class="t-item reveal reveal-delay-1">
       <div class="t-dot2"></div>
+      <div class="t-role">SEO Executive</div>
+      <div class="t-meta">Appco Software · Present</div>
+      <div class="t-desc">Improving websites' search visibility through on-page SEO and content optimization.</div>
+    </div>
+    <div class="t-item reveal reveal-delay-2">
+      <div class="t-dot2"></div>
       <div class="t-role">BCA (Bachelor of Computer Applications)</div>
       <div class="t-meta">Currently pursuing</div>
-      <div class="t-desc">Computer science fundamentals padhte hue, saath saath web development independently seekh raha hoon.</div>
+      <div class="t-desc">Studying computer science fundamentals while learning web development independently alongside my coursework.</div>
     </div>
   </div>
 </section>
@@ -422,7 +566,7 @@
   <div class="eyebrow reveal">// 05</div>
   <h2 class="reveal">Get in touch</h2>
   <div class="contact-wrap">
-    <p class="contact-desc reveal">Koi project hai dimaag me, ya bas hello kehna hai? Neeche se mujhse contact karo.</p>
+    <p class="contact-desc reveal">Have a project in mind, or just want to say hi? Reach out below.</p>
     <div class="pill-row reveal reveal-delay-1">
       <a href="mailto:shankarsaini8107@gmail.com" class="pill-link primary">✉ Email</a>
       <a href="https://github.com/shankar-saini" target="_blank" rel="noopener" class="pill-link">GitHub</a>
@@ -518,7 +662,84 @@
   });
   toTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 
-  // Contact form — submit without leaving the page
+  // Theme toggle (dark/light) with localStorage
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const savedTheme = localStorage.getItem('theme');
+  if(savedTheme === 'light'){ root.setAttribute('data-theme','light'); themeToggle.textContent = '☀️'; }
+  themeToggle.addEventListener('click', () => {
+    const isLight = root.getAttribute('data-theme') === 'light';
+    if(isLight){ root.removeAttribute('data-theme'); themeToggle.textContent = '🌙'; localStorage.setItem('theme','dark'); }
+    else{ root.setAttribute('data-theme','light'); themeToggle.textContent = '☀️'; localStorage.setItem('theme','light'); }
+  });
+
+  // Custom accent color picker with localStorage
+  const colorPicker = document.getElementById('colorPicker');
+  const savedColor = localStorage.getItem('accentColor');
+  if(savedColor){ root.style.setProperty('--accent', savedColor); colorPicker.value = savedColor; }
+  colorPicker.addEventListener('input', (e) => {
+    root.style.setProperty('--accent', e.target.value);
+    localStorage.setItem('accentColor', e.target.value);
+  });
+
+  // Custom trailing cursor
+  const cDot = document.getElementById('cursorDot');
+  const cRing = document.getElementById('cursorRing');
+  let ringX = 0, ringY = 0, mouseX = 0, mouseY = 0;
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cDot.style.opacity = 1; cRing.style.opacity = 1;
+    cDot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%,-50%)`;
+  });
+  document.querySelectorAll('a, button, .skill-pill, .quiz-opt, .fact-card').forEach(el => {
+    el.addEventListener('mouseenter', () => cRing.classList.add('grow'));
+    el.addEventListener('mouseleave', () => cRing.classList.remove('grow'));
+  });
+  function animateRing(){
+    ringX += (mouseX - ringX) * 0.15;
+    ringY += (mouseY - ringY) * 0.15;
+    cRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%,-50%)`;
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Fun fact flip card
+  const facts = [
+    "I taught myself HTML and CSS mostly through free tutorials and lots of trial and error.",
+    "Working in SEO first taught me why fast, well-structured websites actually matter.",
+    "I built this entire portfolio while learning web development at the same time.",
+    "JavaScript is the language I'm currently most excited (and challenged) to learn.",
+    "I'm based in Jaipur — the Pink City — and yes, it really is pink."
+  ];
+  const factCard = document.getElementById('factCard');
+  const factText = document.getElementById('factText');
+  if(factCard){
+    factCard.addEventListener('click', () => {
+      const f = facts[Math.floor(Math.random() * facts.length)];
+      factText.textContent = f;
+      factCard.classList.add('open');
+    });
+  }
+
+  // Mini quiz
+  const quizOpts = document.querySelectorAll('.quiz-opt');
+  const quizResult = document.getElementById('quizResult');
+  let answered = false;
+  quizOpts.forEach(opt => {
+    opt.addEventListener('click', () => {
+      if(answered) return;
+      answered = true;
+      const isCorrect = opt.getAttribute('data-correct') === 'true';
+      opt.classList.add(isCorrect ? 'correct' : 'wrong');
+      if(isCorrect){
+        quizResult.textContent = "✓ Correct! typeof null is a famous JS quirk.";
+      } else {
+        quizOpts.forEach(o => { if(o.getAttribute('data-correct') === 'true') o.classList.add('correct'); });
+        quizResult.textContent = "Not quite — it's actually a well-known JavaScript bug that stuck around!";
+      }
+    });
+  });
+
   const form = document.querySelector('.contact-form');
   const note = document.getElementById('formNote');
   if(form){
