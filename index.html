@@ -9,25 +9,30 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
+    --bg: #f7f5f0;
+    --bg-alt: #efece4;
+    --bg-card: #ffffff;
+    --line: #e0dcd1;
+    --text: #3a3d45;
+    --text-dim: #6b6f78;
+    --heading: #16181d;
+    --accent: #e08a1e;
+    --accent-soft: rgba(224,138,30,0.12);
+    --teal: #1a9c95;
+    --pink: #c454c0;
+  }
+  :root[data-theme="dark"]{
     --bg: #0b0e13;
     --bg-alt: #10141b;
     --bg-card: #131822;
     --line: #232a35;
     --text: #dfe4ea;
     --text-dim: #838d9d;
+    --heading: #f2f4f7;
     --accent: #f0a83c;
     --accent-soft: rgba(240,168,60,0.12);
     --teal: #56cfc9;
     --pink: #e07ee0;
-  }
-  :root[data-theme="light"]{
-    --bg: #f7f5f0;
-    --bg-alt: #efece4;
-    --bg-card: #ffffff;
-    --line: #e0dcd1;
-    --text: #22252b;
-    --text-dim: #6b6f78;
-    --accent-soft: rgba(240,168,60,0.15);
   }
 
   /* ---- Theme + color controls ---- */
@@ -69,9 +74,10 @@
   }
 
   /* ---- Corner decoration (vine) ---- */
+  body{position:relative;}
   .corner-vine{
-    position:fixed; top:64px; right:0; width:120px; height:340px;
-    pointer-events:none; z-index:1; opacity:.5;
+    position:absolute; top:90px; right:0; width:110px; height:4200px;
+    pointer-events:none; z-index:1; opacity:.55;
   }
   @media (max-width:900px){ .corner-vine{display:none;} }
 
@@ -99,11 +105,11 @@
     font-family:'JetBrains Mono',monospace; font-size:11px; color:#0a0d12;
     background:var(--teal); padding:3px 10px; border-radius:99px; font-weight:700;
   }
-  .quiz-title{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15px; color:#f2f4f7;}
+  .quiz-title{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15px; color:var(--heading);}
   .quiz-code{
-    background:var(--bg-alt); border:1px solid var(--line); border-radius:8px;
+    background:#0f131a; border:1px solid #232a35; border-radius:8px;
     padding:14px 16px; font-family:'JetBrains Mono',monospace; font-size:13.5px;
-    color:var(--text); margin-bottom:16px; overflow-x:auto; white-space:pre;
+    color:#dfe4ea; margin-bottom:16px; overflow-x:auto; white-space:pre;
   }
   .quiz-options{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:12px;}
   .quiz-opt{
@@ -116,6 +122,29 @@
   .quiz-opt.correct{border-color:#27c93f; background:rgba(39,201,63,0.12); color:#27c93f;}
   .quiz-opt.wrong{border-color:#ff5f56; background:rgba(255,95,86,0.12); color:#ff5f56;}
   .quiz-result{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--teal); min-height:18px;}
+
+  /* ---- Just for fun section ---- */
+  .fun-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  @media (max-width:780px){ .fun-grid{grid-template-columns:1fr;} }
+  .quiz-score{margin-left:auto; font-size:12px; color:var(--text-dim);}
+  .quiz-next{margin-top:14px; padding:9px 20px; font-size:12.5px; cursor:pointer;}
+  .reflex-card{
+    border:1px solid var(--line); border-radius:12px; padding:26px;
+    background:var(--bg-card); display:flex; flex-direction:column;
+  }
+  .reflex-box{
+    margin:18px 0; height:140px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    background:var(--bg-alt); border:1px solid var(--line);
+    font-family:'JetBrains Mono',monospace; font-size:14px; color:var(--text-dim);
+    transition:background .2s, border-color .2s;
+    padding:14px;
+  }
+  .reflex-box.armed{background:rgba(255,95,86,0.1); border-color:#ff5f56; color:#ff5f56;}
+  .reflex-box.go{background:rgba(39,201,63,0.14); border-color:#27c93f; color:#27c93f; cursor:pointer;}
+  .reflex-box.result{background:var(--accent-soft); border-color:var(--accent); color:var(--heading);}
+  .reflex-btn{align-self:flex-start; padding:11px 24px; font-size:13px; cursor:pointer; font-family:'JetBrains Mono',monospace; background:transparent;}
+  .reflex-btn:disabled{opacity:.6; cursor:default;}
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   body{
@@ -149,7 +178,7 @@
   }
   .logo{
     font-family:'JetBrains Mono',monospace; font-weight:700; font-size:17px;
-    color:#f2f4f7; text-decoration:none; display:flex; align-items:center; gap:6px;
+    color:var(--heading); text-decoration:none; display:flex; align-items:center; gap:6px;
   }
   .logo .brace{color:var(--accent);}
   nav ul{list-style:none; display:flex; gap:6px;}
@@ -206,7 +235,7 @@
   }
   h2{
     font-family:'JetBrains Mono',monospace; font-weight:800;
-    font-size:clamp(24px,3.2vw,32px); color:#f2f4f7; margin-bottom:40px;
+    font-size:clamp(24px,3.2vw,32px); color:var(--heading); margin-bottom:40px;
   }
 
   .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease;}
@@ -221,25 +250,25 @@
     min-height:88vh; display:flex; flex-direction:column; justify-content:center;
   }
   .terminal{
-    background:var(--bg-card); border:1px solid var(--line); border-radius:10px;
+    background:#0f131a; border:1px solid #232a35; border-radius:10px;
     max-width:560px; overflow:hidden;
-    box-shadow:0 20px 60px rgba(0,0,0,0.35);
+    box-shadow:0 20px 60px rgba(0,0,0,0.25);
     margin-bottom:36px;
   }
   .terminal-bar{
     display:flex; align-items:center; gap:8px;
-    padding:10px 14px; background:var(--bg-alt); border-bottom:1px solid var(--line);
+    padding:10px 14px; background:#161b23; border-bottom:1px solid #232a35;
   }
   .t-dot{width:10px; height:10px; border-radius:50%;}
   .t-dot.r{background:#ff5f56;} .t-dot.y{background:#ffbd2e;} .t-dot.g{background:#27c93f;}
-  .terminal-body{padding:20px 22px; font-family:'JetBrains Mono',monospace; font-size:14px; line-height:1.85;}
-  .t-kw{color:var(--pink);} .t-fn{color:var(--teal);} .t-str{color:#9fd66b;} .t-cm{color:var(--text-dim);}
+  .terminal-body{padding:20px 22px; font-family:'JetBrains Mono',monospace; font-size:14px; line-height:1.85; color:#dfe4ea;}
+  .t-kw{color:#e07ee0;} .t-fn{color:#56cfc9;} .t-str{color:#9fd66b;} .t-cm{color:#838d9d;}
   .cursor{display:inline-block; width:8px; height:16px; background:var(--accent); vertical-align:middle; animation:blink 1s step-end infinite;}
   @keyframes blink{50%{opacity:0;}}
 
   h1{
     font-family:'JetBrains Mono',monospace; font-weight:800;
-    font-size:clamp(32px,5.5vw,52px); line-height:1.12; color:#f2f4f7; margin-bottom:18px;
+    font-size:clamp(32px,5.5vw,52px); line-height:1.12; color:var(--heading); margin-bottom:18px;
   }
   #role-line{color:var(--accent);}
   .hero-desc{font-size:16.5px; line-height:1.75; color:var(--text-dim); max-width:540px; margin-bottom:34px;}
@@ -294,7 +323,7 @@
   }
   .project:hover{border-color:var(--accent); transform:translateY(-5px); box-shadow:0 16px 40px rgba(0,0,0,0.35);}
   .project-top{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:10px;}
-  .project-name{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16.5px; color:#f2f4f7;}
+  .project-name{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16.5px; color:var(--heading);}
   .project-link{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--accent); text-decoration:none; white-space:nowrap;}
   .project-link:hover{text-decoration:underline;}
   .project-desc{color:var(--text-dim); font-size:14.5px; line-height:1.65; margin-bottom:16px;}
@@ -310,7 +339,7 @@
     position:absolute; left:-30px; top:4px; width:13px; height:13px; border-radius:50%;
     background:var(--bg); border:2px solid var(--accent);
   }
-  .t-role{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15.5px; color:#f2f4f7;}
+  .t-role{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15.5px; color:var(--heading);}
   .t-meta{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--teal); margin:4px 0 8px;}
   .t-desc{color:var(--text-dim); font-size:14.5px; line-height:1.65; max-width:520px;}
 
@@ -383,15 +412,50 @@
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<svg class="corner-vine" viewBox="0 0 120 340" xmlns="http://www.w3.org/2000/svg" fill="none">
-  <path d="M118 0 C 80 40, 100 80, 60 110 S 20 160, 50 190 S 90 230, 55 260 S 15 300, 45 338"
-        stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" opacity="0.55"/>
-  <circle cx="60" cy="110" r="4" fill="var(--teal)"/>
-  <circle cx="50" cy="190" r="3" fill="var(--pink)"/>
-  <circle cx="55" cy="260" r="4" fill="var(--accent)"/>
-  <path d="M60 110 q 14 -8 22 2" stroke="var(--teal)" stroke-width="1.2" opacity="0.5"/>
-  <path d="M50 190 q -16 -4 -22 6" stroke="var(--pink)" stroke-width="1.2" opacity="0.5"/>
-  <path d="M55 260 q 14 6 20 -4" stroke="var(--accent)" stroke-width="1.2" opacity="0.5"/>
+<svg class="corner-vine" viewBox="0 0 110 4200" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <path d="M105 0 C 70 50, 95 100, 55 140 S 15 190, 50 230 S 90 280, 50 330
+           S 15 390, 55 440 S 95 500, 55 560 S 15 630, 50 690
+           S 95 750, 55 820 S 15 900, 50 970
+           S 95 1040, 55 1120 S 15 1210, 50 1290
+           S 95 1370, 55 1460 S 15 1560, 50 1650
+           S 95 1740, 55 1840 S 15 1950, 50 2050
+           S 95 2150, 55 2260 S 15 2380, 50 2490
+           S 95 2600, 55 2720 S 15 2850, 50 2970
+           S 95 3090, 55 3220 S 15 3360, 50 3490
+           S 95 3620, 55 3760 S 15 3900, 50 4030
+           S 90 4150, 60 4200"
+        stroke="var(--accent)" stroke-width="1.4" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- circle nodes -->
+  <circle cx="55" cy="140" r="4" fill="var(--teal)"/>
+  <circle cx="50" cy="440" r="3" fill="var(--pink)"/>
+  <circle cx="55" cy="820" r="4" fill="var(--accent)"/>
+  <circle cx="50" cy="1290" r="3.5" fill="var(--teal)"/>
+  <circle cx="55" cy="1650" r="3" fill="var(--pink)"/>
+  <circle cx="50" cy="2050" r="4" fill="var(--accent)"/>
+  <circle cx="55" cy="2490" r="3.5" fill="var(--teal)"/>
+  <circle cx="50" cy="2970" r="3" fill="var(--pink)"/>
+  <circle cx="55" cy="3490" r="4" fill="var(--accent)"/>
+  <circle cx="50" cy="4030" r="3.5" fill="var(--teal)"/>
+
+  <!-- leaf-like curl motifs -->
+  <path d="M55 140 q 14 -8 22 2" stroke="var(--teal)" stroke-width="1.1" opacity="0.55"/>
+  <path d="M55 820 q 14 8 20 -4" stroke="var(--accent)" stroke-width="1.1" opacity="0.55"/>
+  <path d="M55 1650 q -16 -4 -22 6" stroke="var(--pink)" stroke-width="1.1" opacity="0.55"/>
+  <path d="M55 2490 q 14 -6 22 4" stroke="var(--teal)" stroke-width="1.1" opacity="0.55"/>
+  <path d="M55 3490 q -16 6 -22 -4" stroke="var(--pink)" stroke-width="1.1" opacity="0.55"/>
+
+  <!-- curly-brace motifs (code theme) -->
+  <text x="70" y="330" font-family="JetBrains Mono, monospace" font-size="16" fill="var(--accent)" opacity="0.5">{</text>
+  <text x="20" y="970" font-family="JetBrains Mono, monospace" font-size="16" fill="var(--teal)" opacity="0.5">}</text>
+  <text x="70" y="1840" font-family="JetBrains Mono, monospace" font-size="16" fill="var(--pink)" opacity="0.5">{</text>
+  <text x="20" y="2720" font-family="JetBrains Mono, monospace" font-size="16" fill="var(--accent)" opacity="0.5">}</text>
+  <text x="70" y="3760" font-family="JetBrains Mono, monospace" font-size="16" fill="var(--teal)" opacity="0.5">{</text>
+
+  <!-- diamond motifs -->
+  <rect x="46" y="686" width="8" height="8" fill="var(--pink)" opacity="0.5" transform="rotate(45 50 690)"/>
+  <rect x="46" y="2046" width="8" height="8" fill="var(--accent)" opacity="0.5" transform="rotate(45 50 2050)"/>
+  <rect x="46" y="3216" width="8" height="8" fill="var(--teal)" opacity="0.5" transform="rotate(45 50 3220)"/>
 </svg>
 
 <div class="progress-bar" id="progressBar"></div>
@@ -406,6 +470,7 @@
           <li><a href="#about" class="nav-link">about</a></li>
           <li><a href="#skills" class="nav-link">skills</a></li>
           <li><a href="#projects" class="nav-link">projects</a></li>
+          <li><a href="#fun" class="nav-link">fun</a></li>
           <li><a href="#experience" class="nav-link">experience</a></li>
           <li><a href="#contact" class="nav-link">contact</a></li>
         </ul>
@@ -413,7 +478,7 @@
       <div class="controls">
         <button class="ctrl-btn" id="themeToggle" aria-label="Toggle dark/light mode" title="Toggle theme">🌙</button>
         <div class="color-picker-wrap" title="Pick your accent color">
-          <input type="color" id="colorPicker" value="#f0a83c">
+          <input type="color" id="colorPicker" value="#e08a1e">
         </div>
         <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
       </div>
@@ -515,20 +580,36 @@
       <p class="project-desc">My complete notes repository on HTML5, CSS3 and JavaScript essentials — concepts, examples and handy cheat sheets.</p>
       <div class="stack"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
     </div>
+  </div>
+</section>
 
-    <div class="quiz-card reveal reveal-delay-2">
+<div class="divider"><div class="divider-line reveal"></div></div>
+
+<section id="fun">
+  <div class="eyebrow reveal">// bonus</div>
+  <h2 class="reveal">Just for fun</h2>
+  <div class="fun-grid">
+    <div class="quiz-card reveal">
       <div class="quiz-top">
-        <span class="quiz-badge">TRY IT</span>
-        <span class="quiz-title">Guess the output</span>
+        <span class="quiz-badge">MINI QUIZ</span>
+        <span class="quiz-title">Guess the JS output</span>
+        <span class="quiz-score mono" id="quizScore">Score: 0/3</span>
       </div>
-      <div class="quiz-code">console.log(typeof null);</div>
-      <div class="quiz-options" id="quizOptions">
-        <button class="quiz-opt" data-correct="false">"null"</button>
-        <button class="quiz-opt" data-correct="true">"object"</button>
-        <button class="quiz-opt" data-correct="false">"undefined"</button>
-        <button class="quiz-opt" data-correct="false">Error</button>
-      </div>
+      <div class="quiz-code" id="quizCode">console.log(typeof null);</div>
+      <div class="quiz-options" id="quizOptions"></div>
       <div class="quiz-result" id="quizResult"></div>
+      <button class="btn btn-ghost quiz-next" id="quizNext" style="display:none;">Next question →</button>
+    </div>
+
+    <div class="reflex-card reveal reveal-delay-1">
+      <div class="quiz-top">
+        <span class="quiz-badge" style="background:var(--pink);">REFLEX TEST</span>
+        <span class="quiz-title">How fast can you click a bug?</span>
+      </div>
+      <div class="reflex-box" id="reflexBox">
+        <span id="reflexText">Click Start to begin</span>
+      </div>
+      <button class="btn btn-ghost reflex-btn" id="reflexBtn">Start</button>
     </div>
   </div>
 </section>
@@ -662,15 +743,15 @@
   });
   toTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 
-  // Theme toggle (dark/light) with localStorage
+  // Theme toggle (dark/light) with localStorage — light is default
   const themeToggle = document.getElementById('themeToggle');
   const root = document.documentElement;
   const savedTheme = localStorage.getItem('theme');
-  if(savedTheme === 'light'){ root.setAttribute('data-theme','light'); themeToggle.textContent = '☀️'; }
+  if(savedTheme === 'dark'){ root.setAttribute('data-theme','dark'); themeToggle.textContent = '☀️'; }
   themeToggle.addEventListener('click', () => {
-    const isLight = root.getAttribute('data-theme') === 'light';
-    if(isLight){ root.removeAttribute('data-theme'); themeToggle.textContent = '🌙'; localStorage.setItem('theme','dark'); }
-    else{ root.setAttribute('data-theme','light'); themeToggle.textContent = '☀️'; localStorage.setItem('theme','light'); }
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    if(isDark){ root.removeAttribute('data-theme'); themeToggle.textContent = '🌙'; localStorage.setItem('theme','light'); }
+    else{ root.setAttribute('data-theme','dark'); themeToggle.textContent = '☀️'; localStorage.setItem('theme','dark'); }
   });
 
   // Custom accent color picker with localStorage
@@ -721,24 +802,101 @@
     });
   }
 
-  // Mini quiz
-  const quizOpts = document.querySelectorAll('.quiz-opt');
+  // Multi-question mini quiz
+  const questions = [
+    { code: "console.log(typeof null);", options: ['"null"','"object"','"undefined"','Error'], correct: 1,
+      note: "It's a famous JS quirk — typeof null has returned \"object\" since the very first version of JS." },
+    { code: "console.log(1 + '1');", options: ["2","'11'","NaN","Error"], correct: 1,
+      note: "JS converts the number to a string and concatenates, giving '11'." },
+    { code: "console.log([] == false);", options: ["true","false","Error","undefined"], correct: 0,
+      note: "An empty array is coerced to an empty string, then to 0, which loosely equals false." }
+  ];
+  let qIndex = 0, score = 0, qAnswered = false;
+  const quizCode = document.getElementById('quizCode');
+  const quizOptionsEl = document.getElementById('quizOptions');
   const quizResult = document.getElementById('quizResult');
-  let answered = false;
-  quizOpts.forEach(opt => {
-    opt.addEventListener('click', () => {
-      if(answered) return;
-      answered = true;
-      const isCorrect = opt.getAttribute('data-correct') === 'true';
-      opt.classList.add(isCorrect ? 'correct' : 'wrong');
-      if(isCorrect){
-        quizResult.textContent = "✓ Correct! typeof null is a famous JS quirk.";
-      } else {
-        quizOpts.forEach(o => { if(o.getAttribute('data-correct') === 'true') o.classList.add('correct'); });
-        quizResult.textContent = "Not quite — it's actually a well-known JavaScript bug that stuck around!";
-      }
+  const quizScoreEl = document.getElementById('quizScore');
+  const quizNext = document.getElementById('quizNext');
+
+  function renderQuestion(){
+    const q = questions[qIndex];
+    qAnswered = false;
+    quizCode.textContent = q.code;
+    quizResult.textContent = '';
+    quizNext.style.display = 'none';
+    quizOptionsEl.innerHTML = '';
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'quiz-opt';
+      btn.textContent = opt;
+      btn.dataset.correct = (i === q.correct);
+      btn.addEventListener('click', () => handleAnswer(btn, q));
+      quizOptionsEl.appendChild(btn);
     });
+  }
+  function handleAnswer(btn, q){
+    if(qAnswered) return;
+    qAnswered = true;
+    const isCorrect = btn.dataset.correct === 'true';
+    btn.classList.add(isCorrect ? 'correct' : 'wrong');
+    if(isCorrect) score++;
+    else {
+      [...quizOptionsEl.children].forEach(o => { if(o.dataset.correct === 'true') o.classList.add('correct'); });
+    }
+    quizResult.textContent = (isCorrect ? '✓ Correct! ' : '✗ Not quite. ') + q.note;
+    quizScoreEl.textContent = `Score: ${score}/${questions.length}`;
+    quizNext.style.display = (qIndex < questions.length - 1) ? 'inline-flex' : 'none';
+    if(qIndex === questions.length - 1){
+      quizResult.textContent += ` — Quiz complete! Final score: ${score}/${questions.length}.`;
+    }
+  }
+  quizNext.addEventListener('click', () => {
+    qIndex = Math.min(qIndex + 1, questions.length - 1);
+    renderQuestion();
   });
+  renderQuestion();
+
+  // Reflex / reaction time mini-game
+  const reflexBox = document.getElementById('reflexBox');
+  const reflexText = document.getElementById('reflexText');
+  const reflexBtn = document.getElementById('reflexBtn');
+  let reflexTimer = null, reflexStart = 0, reflexState = 'idle';
+
+  reflexBtn.addEventListener('click', () => {
+    if(reflexState === 'idle' || reflexState === 'result'){
+      reflexState = 'waiting';
+      reflexBox.className = 'reflex-box armed';
+      reflexText.textContent = 'Wait for green...';
+      reflexBtn.textContent = 'Waiting...';
+      reflexBtn.disabled = true;
+      const delay = 1000 + Math.random() * 2500;
+      reflexTimer = setTimeout(() => {
+        reflexState = 'go';
+        reflexBox.className = 'reflex-box go';
+        reflexText.textContent = 'Click now!';
+        reflexStart = performance.now();
+      }, delay);
+    }
+  });
+  reflexBox.addEventListener('click', () => {
+    if(reflexState === 'waiting'){
+      clearTimeout(reflexTimer);
+      reflexBox.className = 'reflex-box result';
+      reflexText.textContent = 'Too soon! Click Start to try again.';
+      reflexState = 'result';
+      reflexBtn.textContent = 'Try Again';
+      reflexBtn.disabled = false;
+    } else if(reflexState === 'go'){
+      const time = Math.round(performance.now() - reflexStart);
+      let comment = time < 250 ? "Lightning fast! ⚡" : time < 400 ? "Nice reflexes! 👍" : "Not bad — try again!";
+      reflexBox.className = 'reflex-box result';
+      reflexText.textContent = `${time}ms — ${comment}`;
+      reflexState = 'result';
+      reflexBtn.textContent = 'Try Again';
+      reflexBtn.disabled = false;
+    }
+  });
+
 
   const form = document.querySelector('.contact-form');
   const note = document.getElementById('formNote');
