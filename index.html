@@ -27,7 +27,9 @@
 <meta property="twitter:description" content="Personal portfolio of Shankar Saini, a BCA student and SEO Executive based in Jaipur. Explore my web development projects.">
 <meta property="twitter:image" content="https://shankar-saini.github.io/shankar-saini-seo-web-developer.png" />
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22%230b0e13%22/%3E%3Cpath%20d%3D%22M38%2032%20L22%2050%20L38%2068%22%20stroke%3D%22%23f0a83c%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22/%3E%3Cpath%20d%3D%22M62%2032%20L78%2050%20L62%2068%22%20stroke%3D%22%23f0a83c%22%20stroke-width%3D%227%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+<link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -164,7 +166,7 @@
     font-family:'JetBrains Mono',monospace; font-size:11px; color:#0a0d12;
     background:var(--teal); padding:3px 10px; border-radius:99px; font-weight:700;
   }
-  .quiz-title{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15px; color:var(--heading);}
+  .quiz-title{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15px; color:var(--heading); margin:0;}
   .quiz-code{
     background:#0f131a; border:1px solid #232a35; border-radius:8px;
     padding:14px 16px; font-family:'JetBrains Mono',monospace; font-size:13.5px;
@@ -402,7 +404,7 @@
   }
   .project:hover{border-color:var(--accent); transform:translateY(-5px); box-shadow:0 16px 40px rgba(0,0,0,0.35);}
   .project-top{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:10px;}
-  .project-name{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16.5px; color:var(--heading);}
+  .project-name{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16.5px; color:var(--heading); margin:0;}
   .project-link{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--accent); text-decoration:none; white-space:nowrap;}
   .project-link:hover{text-decoration:underline;}
   .project-desc{color:var(--text-dim); font-size:14.5px; line-height:1.65; margin-bottom:16px;}
@@ -418,7 +420,7 @@
     position:absolute; left:-30px; top:4px; width:13px; height:13px; border-radius:50%;
     background:var(--bg); border:2px solid var(--accent);
   }
-  .t-role{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15.5px; color:var(--heading);}
+  .t-role{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15.5px; color:var(--heading); margin:0;}
   .t-meta{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--teal); margin:4px 0 8px;}
   .t-desc{color:var(--text-dim); font-size:14.5px; line-height:1.65; max-width:520px;}
 
@@ -741,7 +743,7 @@
   <div class="project-grid">
     <div class="project reveal">
       <div class="project-top">
-        <span class="project-name">Personal Portfolio</span>
+        <h3 class="project-name">Personal Portfolio</h3>
         <a href="https://github.com/shankar-saini/shankar-saini.github.io" target="_blank" rel="noopener" class="project-link">github ↗</a>
       </div>
       <p class="project-desc">This very site — my personal profile and learning journey, built with HTML and CSS, hosted live on GitHub Pages.</p>
@@ -749,7 +751,7 @@
     </div>
     <div class="project reveal reveal-delay-1">
       <div class="project-top">
-        <span class="project-name">Web Development Notes</span>
+        <h3 class="project-name">Web Development Notes</h3>
         <a href="https://github.com/shankar-saini/web-development-notes" target="_blank" rel="noopener" class="project-link">github ↗</a>
       </div>
       <p class="project-desc">My complete notes repository on HTML5, CSS3 and JavaScript essentials — concepts, examples and handy cheat sheets.</p>
@@ -767,7 +769,7 @@
     <div class="quiz-card reveal">
       <div class="quiz-top">
         <span class="quiz-badge">MINI QUIZ</span>
-        <span class="quiz-title">Guess the JS output</span>
+        <h4 class="quiz-title">Guess the JS output</h4>
         <span class="quiz-score mono" id="quizScore">Score: 0/3</span>
       </div>
       <div class="quiz-code" id="quizCode">console.log(typeof null);</div>
@@ -779,7 +781,7 @@
     <div class="reflex-card reveal reveal-delay-1">
       <div class="quiz-top">
         <span class="quiz-badge" style="background:var(--pink);">REFLEX TEST</span>
-        <span class="quiz-title">How fast can you click a bug?</span>
+        <h4 class="quiz-title">How fast can you click a bug?</h4>
       </div>
       <div class="reflex-box" id="reflexBox">
         <span id="reflexText">Click Start to begin</span>
@@ -797,19 +799,19 @@
   <div class="timeline">
     <div class="t-item reveal">
       <div class="t-dot2"></div>
-      <div class="t-role">Learning Web Development</div>
+      <h3 class="t-role">Learning Web Development</h3>
       <div class="t-meta">Self-taught · Started Sept 2026 · Present</div>
       <div class="t-desc">Just getting started on my web development journey — currently building a solid foundation in HTML, CSS and JavaScript through hands-on practice and small projects.</div>
     </div>
     <div class="t-item reveal reveal-delay-1">
       <div class="t-dot2"></div>
-      <div class="t-role">SEO Executive</div>
+      <h3 class="t-role">SEO Executive</h3>
       <div class="t-meta">Appco Software · June 2025 – Aug 2026</div>
       <div class="t-desc">Brought 1.2+ years of experience in improving websites' search visibility through on-page SEO and content optimization.</div>
     </div>
     <div class="t-item reveal reveal-delay-2">
       <div class="t-dot2"></div>
-      <div class="t-role">BCA (Bachelor of Computer Applications)</div>
+      <h3 class="t-role">BCA (Bachelor of Computer Applications)</h3>
       <div class="t-meta">Currently pursuing</div>
       <div class="t-desc">Studying computer science fundamentals while learning web development independently alongside my coursework.</div>
     </div>
