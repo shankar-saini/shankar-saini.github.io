@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Page not found (404) | Shankar Saini</title>
+<meta name="description" content="This page could not be found. Head back to the home page or pick one of the pages below.">
+<meta name="robots" content="noindex, follow">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- absolute (root) paths on purpose: a 404 can be served from ANY url depth -->
+<link rel="stylesheet" href="/site.css">
+<script>try{if(localStorage.getItem('theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
+<noscript><style>.rv{opacity:1!important;translate:none!important}</style></noscript>
+<style>
+.nf{min-height:calc(100vh - 220px);display:grid;align-items:center}
+.big{font:800 clamp(90px,22vw,200px)/1 'JetBrains Mono',monospace;background:linear-gradient(120deg,var(--accent),var(--pink),var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.04em;margin-bottom:6px}
+.trace{background:var(--term);border:1px solid var(--term-line);border-radius:14px;max-width:620px;padding:18px 22px;font:13.5px/1.8 'JetBrains Mono',monospace;color:#dfe4ea;margin:22px 0 26px;overflow-wrap:anywhere}
+.trace .p{color:#56cfc9}.trace .e{color:#ff6b6b;font-weight:700}.trace .g{color:#27c93f}
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:14px;max-width:760px;margin-top:10px}
+.links a{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;transition:transform .25s,border-color .25s,box-shadow .25s}
+.links a:hover,.links a:focus-visible{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 12px 28px rgba(0,0,0,.12)}
+.links b{display:block;font:800 15px 'JetBrains Mono',monospace;color:var(--head)}
+.links span{font-size:12.5px;color:var(--dim)}
+.links a.best{border-color:var(--accent)}
+</style>
+<script>try{var P=JSON.parse(localStorage.getItem('palette')||'null'),H=/^#[0-9a-f]{6}$/i;if(P&&H.test(P.t)&&H.test(P.p)){var S=document.documentElement.style;S.setProperty('--teal',P.t);S.setProperty('--pink',P.p)}}catch(e){}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div id="pg" aria-hidden="true"></div>
+
+<header><div class="wrap bar">
+<a class="logo" href="/index.html" aria-label="Shankar Saini, home">&lt;<b>Shankar Saini</b>/&gt;</a>
+<button class="ico" id="mb" aria-label="Open menu" aria-expanded="false" aria-controls="nv">☰</button>
+<nav id="nv" aria-label="Main">
+<a href="/index.html">home</a><a href="/about.html">about</a><a href="/skills.html">skills</a>
+<a href="/projects.html">projects</a><a href="/field-notes.html">field notes</a><a href="/contact.html">contact</a>
+</nav>
+<div class="ctl"><button class="ico" id="th" aria-label="Toggle dark mode" title="Toggle theme">🌙</button><input type="color" id="cp" class="ico" value="#e08a1e" aria-label="Pick your accent color" title="Pick your accent color"></div>
+</div></header>
+
+<main id="main" class="nf">
+<section class="hero" style="padding:50px 0" aria-labelledby="t">
+<div class="blob b1"></div><div class="blob b2"></div>
+<div class="wrap">
+<div class="eyebrow rv">// error</div>
+<div class="big rv" aria-hidden="true">404</div>
+<h1 id="t" class="rv">This page <em>wandered off.</em>
+<span class="h1-sub">Page not found on shankar-saini.github.io</span></h1>
+<p class="lead rv">The link may be old, mistyped, or the page was moved. Nothing is broken on your side. Pick where you want to go.</p>
+
+<div class="trace rv" role="img" aria-label="Request log showing a 404 for the address you opened">
+<span class="p">$</span> GET <span id="path">/this-page</span><br>
+<span class="e">404</span> Not Found<br>
+<span class="g">→</span> <span id="guess">looking for the closest page…</span>
+</div>
+
+<div class="links rv" id="links">
+<a href="/index.html" data-p="home index"><b>Home</b><span>Start from the beginning</span></a>
+<a href="/about.html" data-p="about story bio"><b>About</b><span>My story and background</span></a>
+<a href="/skills.html" data-p="skills seo html css javascript"><b>Skills</b><span>SEO and web development</span></a>
+<a href="/projects.html" data-p="projects work portfolio github"><b>Projects</b><span>Things I have built</span></a>
+<a href="/field-notes.html" data-p="field notes blog posts articles"><b>Field notes</b><span>Short SEO and dev notes</span></a>
+<a href="/contact.html" data-p="contact email hire message"><b>Contact</b><span>Say hi or hire me</span></a>
+</div>
+</div>
+</section>
+</main>
+
+<footer><div class="wrap">
+<p><a href="mailto:shankarsaini8107@gmail.com">Email</a><a href="https://github.com/shankar-saini" target="_blank" rel="noopener me">GitHub</a><a href="https://www.linkedin.com/in/shankar-saini/" target="_blank" rel="noopener me">LinkedIn</a></p>
+<p style="margin-top:14px">© 2026 Shankar Saini · SEO &amp; Web Developer, Jaipur</p>
+</div></footer>
+
+<script defer>
+(function(){
+var root=document.documentElement;
+function get(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function onAccent(c){var n=parseInt(c.slice(1),16),r=n>>16,g=(n>>8)&255,b=n&255;var L=(0.299*r+0.587*g+0.114*b)/255;root.style.setProperty('--on-accent',L>0.6?'#0a0d12':'#ffffff')}
+function setAccent(c){root.style.setProperty('--accent',c);onAccent(c)}
+var ac=get('accentColor');if(ac&&/^#[0-9a-f]{6}$/i.test(ac))setAccent(ac);else ac=null;
+var th=document.getElementById('th');
+function sync(){th.textContent=root.dataset.theme==='dark'?'☀️':'🌙'}sync();
+th.onclick=function(){var d=root.dataset.theme==='dark';if(d)delete root.dataset.theme;else root.dataset.theme='dark';set('theme',d?'light':'dark');sync()};
+var cp=document.getElementById('cp');if(ac)cp.value=ac;
+cp.oninput=function(e){setAccent(e.target.value);set('accentColor',e.target.value)};
+var mb=document.getElementById('mb'),nv=document.getElementById('nv');
+mb.onclick=function(){var o=nv.classList.toggle('open');mb.setAttribute('aria-expanded',o)};
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
+document.querySelectorAll('.rv').forEach(function(x){io.observe(x)});
+
+/* show the address that failed + suggest the closest page (textContent only, never innerHTML) */
+var path=decodeURIComponent(location.pathname+location.search).slice(0,120);
+document.getElementById('path').textContent=path||'/';
+var words=path.toLowerCase().replace(/\.html?$/,'').split(/[^a-z0-9]+/).filter(Boolean);
+var links=[].slice.call(document.querySelectorAll('#links a')),best=null,top=0;
+links.forEach(function(a){var s=0,keys=a.dataset.p.split(' ');words.forEach(function(w){keys.forEach(function(k){if(k===w)s+=3;else if(w.length>2&&(k.indexOf(w)===0||w.indexOf(k)===0))s+=1})});if(s>top){top=s;best=a}});
+var g=document.getElementById('guess');
+if(best){best.classList.add('best');g.textContent='did you mean '+best.querySelector('b').textContent+'?'}
+else g.textContent='no close match, try the links below';
+})();
+</script>
+</body>
+</html>
