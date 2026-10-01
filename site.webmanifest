@@ -1,0 +1,19 @@
+{
+  "name": "Shankar Saini | SEO & Web Developer",
+  "short_name": "Shankar Saini",
+  "description": "Portfolio of Shankar Saini, SEO Executive and web developer from Jaipur.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "lang": "en-IN",
+  "background_color": "#f7f5f0",
+  "theme_color": "#e08a1e",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
