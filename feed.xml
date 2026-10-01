@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Shankar Saini | Field Notes</title>
+  <link>https://shankar-saini.github.io/field-notes.html</link>
+  <atom:link href="https://shankar-saini.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>Short, practical SEO and web development notes by Shankar Saini, Jaipur.</description>
+  <language>en-in</language>
+  <lastBuildDate>Thu, 01 Oct 2026 06:00:00 +0530</lastBuildDate>
+  <item>
+    <title>Core Web Vitals: the three numbers worth fixing first</title>
+    <link>https://shankar-saini.github.io/field-notes.html#core-web-vitals</link>
+    <guid isPermaLink="true">https://shankar-saini.github.io/field-notes.html#core-web-vitals</guid>
+    <pubDate>Tue, 22 Sep 2026 06:00:00 +0530</pubDate>
+    <author>shankarsaini8107@gmail.com (Shankar Saini)</author>
+    <description>Fix LCP, INP and CLS in order of how much they hurt real visitors, and ignore the rest of the noise until they are green.</description>
+  </item>
+  <item>
+    <title>Title tags: still the strongest on-page lever</title>
+    <link>https://shankar-saini.github.io/field-notes.html#title-tags</link>
+    <guid isPermaLink="true">https://shankar-saini.github.io/field-notes.html#title-tags</guid>
+    <pubDate>Thu, 10 Sep 2026 06:00:00 +0530</pubDate>
+    <author>shankarsaini8107@gmail.com (Shankar Saini)</author>
+    <description>One line of HTML decides how you look in search results and tells Google what the page is about.</description>
+  </item>
+  <item>
+    <title>Meta descriptions don't rank, but they still earn clicks</title>
+    <link>https://shankar-saini.github.io/field-notes.html#meta-descriptions</link>
+    <guid isPermaLink="true">https://shankar-saini.github.io/field-notes.html#meta-descriptions</guid>
+    <pubDate>Fri, 28 Aug 2026 06:00:00 +0530</pubDate>
+    <author>shankarsaini8107@gmail.com (Shankar Saini)</author>
+    <description>Not a ranking factor, yet a better description can be the difference between a scroll-past and a click.</description>
+  </item>
+  <item>
+    <title>Canonical, 301 or noindex: which one to use</title>
+    <link>https://shankar-saini.github.io/field-notes.html#canonical-vs-redirect</link>
+    <guid isPermaLink="true">https://shankar-saini.github.io/field-notes.html#canonical-vs-redirect</guid>
+    <pubDate>Fri, 14 Aug 2026 06:00:00 +0530</pubDate>
+    <author>shankarsaini8107@gmail.com (Shankar Saini)</author>
+    <description>Three tools that look similar and solve three different problems. Gone = 301, duplicate = canonical, private = noindex.</description>
+  </item>
+  <item>
+    <title>Local SEO for a small business: the boring basics that work</title>
+    <link>https://shankar-saini.github.io/field-notes.html#local-seo</link>
+    <guid isPermaLink="true">https://shankar-saini.github.io/field-notes.html#local-seo</guid>
+    <pubDate>Thu, 30 Jul 2026 06:00:00 +0530</pubDate>
+    <author>shankarsaini8107@gmail.com (Shankar Saini)</author>
+    <description>Nearby customers find you through a handful of unglamorous things done consistently.</description>
+  </item>
+  <item>
+    <title>Schema markup: only mark up what people can see</title>
+    <link>https://shankar-saini.github.io/field-notes.html#schema-truth</link>
+    <guid isPermaLink="true">https://shankar-saini.github.io/field-notes.html#schema-truth</guid>
+    <pubDate>Sun, 12 Jul 2026 06:00:00 +0530</pubDate>
+    <author>shankarsaini8107@gmail.com (Shankar Saini)</author>
+    <description>Structured data helps search engines understand a page, but only if it matches reality.</description>
+  </item>
+  <item>
+    <title>Don't hide your content behind JavaScript animations</title>
+    <link>https://shankar-saini.github.io/field-notes.html#no-js-content</link>
+    <guid isPermaLink="true">https://shankar-saini.github.io/field-notes.html#no-js-content</guid>
+    <pubDate>Thu, 25 Jun 2026 06:00:00 +0530</pubDate>
+    <author>shankarsaini8107@gmail.com (Shankar Saini)</author>
+    <description>A scroll-reveal that starts at opacity 0 looks great, until the script fails and the page is blank.</description>
+  </item>
+  <item>
+    <title>WordPress and Shopify: five settings I check before anything else</title>
+    <link>https://shankar-saini.github.io/field-notes.html#cms-checks</link>
+    <guid isPermaLink="true">https://shankar-saini.github.io/field-notes.html#cms-checks</guid>
+    <pubDate>Mon, 08 Jun 2026 06:00:00 +0530</pubDate>
+    <author>shankarsaini8107@gmail.com (Shankar Saini)</author>
+    <description>Before touching keywords, check that the platform is not quietly working against the site.</description>
+  </item>
+  <item>
+    <title>Images: the fastest speed win on most sites</title>
+    <link>https://shankar-saini.github.io/field-notes.html#images-speed</link>
+    <guid isPermaLink="true">https://shankar-saini.github.io/field-notes.html#images-speed</guid>
+    <pubDate>Wed, 20 May 2026 06:00:00 +0530</pubDate>
+    <author>shankarsaini8107@gmail.com (Shankar Saini)</author>
+    <description>On most pages I audit, images are the biggest download. Fixing them moves LCP more than anything else.</description>
+  </item>
+</channel>
+</rss>
