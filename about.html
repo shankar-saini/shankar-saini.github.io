@@ -180,21 +180,14 @@ html.xray main :is(section,article){box-shadow:inset 0 0 0 1px color-mix(in srgb
 @keyframes twinkle{0%,100%{opacity:.18;transform:scale(.75)}50%{opacity:1;transform:scale(1.15)}}
 @media(max-width:1080px){.orn{display:none}}
 
-/* ---- About: portrait block (photo-matched background + blob + floating chips) ---- */
+/* ---- About: portrait (panel colour sampled from the photo so they blend) ---- */
 /* colours below were sampled from the photo's own wall so the panel and the photo blend */
-.story-sec{background:radial-gradient(780px 520px at 18% 45%,color-mix(in srgb,#8e9bb8 26%,transparent),transparent 72%)}
 .about-me{display:grid;grid-template-columns:minmax(260px,400px) minmax(0,1fr);gap:70px;align-items:center}
 .about-me>*{min-width:0}
 @media(max-width:860px){.about-me{grid-template-columns:minmax(0,1fr);gap:48px}}
 .portrait{position:relative;width:min(100%,400px);margin:0 auto}
-.pblob{position:absolute;inset:-22px -24px -26px -20px;border-radius:46% 54% 52% 48% / 42% 46% 54% 58%;background:linear-gradient(135deg,var(--accent),var(--pink));opacity:.9;transform:rotate(-6deg);z-index:0}
-.stage{position:relative;z-index:1;border-radius:32px;overflow:hidden;padding-top:16%;background:linear-gradient(100deg,#aec5ea 0%,#97a3bb 45%,#95a5c7 100%);box-shadow:0 26px 60px rgba(0,0,0,.26)}
+.stage{position:relative;border-radius:24px;overflow:hidden;padding-top:16%;background:linear-gradient(100deg,#aec5ea 0%,#97a3bb 45%,#95a5c7 100%);box-shadow:0 12px 32px rgba(0,0,0,.14)}
 .stage img{display:block;width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 24%);mask-image:linear-gradient(to bottom,transparent 0,#000 24%)}
-.pchip{position:absolute;z-index:2;font:700 12.5px 'JetBrains Mono',monospace;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:99px;padding:9px 16px;box-shadow:0 12px 28px rgba(0,0,0,.18);white-space:nowrap;animation:floaty 5s ease-in-out infinite}
-.pchip.p1{top:-16px;right:-14px}
-.pchip.p2{bottom:-16px;left:-14px;animation-delay:-2.4s}
-@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-@media(max-width:480px){.pchip.p1{right:-4px}.pchip.p2{left:-4px}.pblob{inset:-14px -2px -18px -2px;transform:rotate(-4deg)}}
 .open-tag{display:inline-flex;align-items:center;gap:10px;font:600 12.5px 'JetBrains Mono',monospace;color:var(--text);border:1px solid var(--line);background:var(--card);padding:7px 15px;border-radius:99px;margin-bottom:18px}
 .open-tag i{width:9px;height:9px;border-radius:50%;background:#27c93f;flex:none}
 .story p{margin-bottom:16px;max-width:620px}
@@ -254,12 +247,9 @@ html.xray main :is(section,article){box-shadow:inset 0 0 0 1px color-mix(in srgb
 </div>
 </section>
 
-<section class="sec story-sec" aria-labelledby="story-h"><div class="wrap about-me">
+<section class="sec" aria-labelledby="story-h"><div class="wrap about-me">
 <figure class="portrait rv">
-<span class="pblob" aria-hidden="true"></span>
 <div class="stage"><img src="my-photo.jpg" width="800" height="1200" alt="Portrait of Shankar Saini, a web developer and SEO specialist from Jaipur, working at his computer. Cards around him list Web Development, SEO, Git and GitHub, and AI tools." decoding="async"></div>
-<span class="pchip p1" aria-hidden="true">💻 Web Developer</span>
-<span class="pchip p2" aria-hidden="true">📍 Jaipur, India</span>
 </figure>
 <div class="rv story">
 <p class="open-tag"><i aria-hidden="true"></i>Open to internships &amp; freelance work</p>
