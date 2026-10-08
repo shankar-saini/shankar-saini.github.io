@@ -45,7 +45,7 @@
 <button class="ico" id="mb" aria-label="Open menu" aria-expanded="false" aria-controls="nv">☰</button>
 <nav id="nv" aria-label="Main">
 <a href="/">home</a><a href="/about">about</a><a href="/skills">skills</a>
-<a href="/projects">projects</a><a href="/field-notes">field notes</a><a href="/contact">contact</a>
+<a href="/projects">projects</a><a href="/field-notes">field notes</a><a href="/web-development">services</a><a href="/contact">contact</a>
 </nav>
 <div class="ctl"><button class="ico" id="th" aria-label="Toggle dark mode" title="Toggle theme">🌙</button><input type="color" id="cp" class="ico" value="#e08a1e" aria-label="Pick your accent color" title="Pick your accent color"></div>
 </div></header>
@@ -56,9 +56,10 @@
 <div class="wrap">
 <div class="eyebrow rv">// error</div>
 <div class="big rv" aria-hidden="true">404</div>
-<h1 id="t" class="rv">This page <em>wandered off.</em>
+<h1 id="t" class="rv">You found the <em>wrong door.</em> 🚪
 <span class="h1-sub">Page not found on shankar-saini.github.io</span></h1>
-<p class="lead rv">The link may be old, mistyped, or the page was moved. Nothing is broken on your side. Pick where you want to go.</p>
+<p class="lead rv">The link may be old, mistyped, or the page was moved. Nothing is broken on your side. Go back, or try another door.</p>
+<div class="rv" style="margin-bottom:8px"><button class="btn" id="goBack" type="button">← Go back</button><button class="btn pri" id="door" type="button">🚪 Try another door</button></div>
 
 <div class="trace rv" role="img" aria-label="Request log showing a 404 for the address you opened">
 <span class="p">$</span> GET <span id="path">/this-page</span><br>
@@ -110,7 +111,10 @@ links.forEach(function(a){var s=0,keys=a.dataset.p.split(' ');words.forEach(func
 var g=document.getElementById('guess');
 if(best){best.classList.add('best');g.textContent='did you mean '+best.querySelector('b').textContent+'?'}
 else g.textContent='no close match, try the links below';
+document.getElementById('goBack').onclick=function(){if(history.length>1)history.back();else location.href='/'};
+document.getElementById('door').onclick=function(){var d=['/about','/skills','/projects','/field-notes','/web-development','/contact','/'];location.href=d[Math.floor(Math.random()*d.length)]};
 })();
 </script>
+<script src="/fun.js" defer></script>
 </body>
 </html>
