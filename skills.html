@@ -174,7 +174,7 @@ body{position:relative}
 <button class="ico" id="mb" aria-label="Open menu" aria-expanded="false" aria-controls="nv">☰</button>
 <nav id="nv" aria-label="Main">
 <a href="/">home</a><a href="/about">about</a><a href="/skills" class="on" aria-current="page">skills</a>
-<a href="/projects">projects</a><a href="/field-notes">field notes</a><a href="/contact">contact</a>
+<a href="/projects">projects</a><a href="/field-notes">field notes</a><a href="/web-development">services</a><a href="/contact">contact</a>
 </nav>
 <div class="ctl"><button class="ico" id="th" aria-label="Toggle dark mode" title="Toggle theme">🌙</button><input type="color" id="cp" class="ico" value="#e08a1e" aria-label="Pick your accent color" title="Pick your accent color"></div>
 </div></header>
@@ -430,5 +430,6 @@ document.querySelectorAll('.chips2 button').forEach(function(c){c.addEventListen
 </script>
 <button class="totop" id="totop" type="button" aria-label="Back to top">↑</button>
 <script>(function(){var b=document.getElementById('totop');if(!b)return;addEventListener('scroll',function(){b.classList.toggle('show',scrollY>600)},{passive:true});b.onclick=function(){scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})}})();</script>
+<script src="/fun.js" defer></script>
 </body>
 </html>
