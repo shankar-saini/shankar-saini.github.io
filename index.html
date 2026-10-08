@@ -260,6 +260,51 @@ kbd{font:600 11.5px 'JetBrains Mono',monospace;border:1px solid var(--line);bord
 .toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);z-index:250;background:var(--head);color:var(--bg);font:600 13px 'JetBrains Mono',monospace;padding:12px 20px;border-radius:99px;box-shadow:0 14px 36px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;max-width:92vw;text-align:center}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 .cf{position:fixed;z-index:400;width:8px;height:12px;border-radius:2px;pointer-events:none}
+
+/* ---- visitor test ---- */
+.vchoices{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.vc{font:700 14px 'JetBrains Mono',monospace;padding:13px 22px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--text);cursor:pointer;transition:transform .2s,border-color .2s,background .2s}
+.vc:hover{border-color:var(--accent);transform:translateY(-2px)}
+.vc[aria-pressed=true]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.vres{margin-top:24px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:22px 24px;max-width:760px}
+.vmsg{font:800 18px/1.45 'JetBrains Mono',monospace;color:var(--head);margin-bottom:14px}
+.vpath{list-style:none;display:grid;gap:10px;counter-reset:v}
+.vpath li{counter-increment:v}
+.vpath a,.vpath button{display:flex;gap:12px;align-items:center;width:100%;text-align:left;font:600 14px 'JetBrains Mono',monospace;color:var(--text);background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:12px 16px;cursor:pointer;transition:border-color .2s,transform .2s}
+.vpath a::before,.vpath button::before{content:counter(v);display:grid;place-items:center;flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-size:12px}
+.vpath a:hover,.vpath button:hover{border-color:var(--accent);transform:translateX(4px)}
+
+/* ---- time machine ---- */
+.tm{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin-bottom:34px;max-width:760px}
+.tm-l{font:800 14px 'JetBrains Mono',monospace;color:var(--head);margin-bottom:12px}
+.tm-l small{font-weight:500;color:var(--dim);margin-left:8px}
+.tm input[type=range]{width:100%;accent-color:var(--accent);height:28px;cursor:pointer}
+.tm-ticks{display:flex;justify-content:space-between;font:600 11.5px 'JetBrains Mono',monospace;color:var(--dim);margin:2px 2px 16px}
+.tm-card{border-top:1px dashed var(--line);padding-top:16px;animation:tmIn .35s ease}
+.tm-card h3{font-size:17px;margin-bottom:6px}
+.tm-card p{color:var(--dim);font-size:14.5px;margin-bottom:10px}
+@keyframes tmIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ---- bug game + detective ---- */
+.arena{position:relative;height:170px;border:1px dashed var(--line);border-radius:12px;background:var(--bg2);overflow:hidden;margin-bottom:6px}
+.arena .bug{position:absolute;left:20px;top:20px;font-size:28px;background:none;border:0;cursor:pointer;line-height:1;padding:4px;transition:left .35s ease,top .35s ease}
+.arena-msg{position:absolute;left:0;right:0;bottom:10px;text-align:center;font:13px 'JetBrains Mono',monospace;color:var(--dim);pointer-events:none}
+.d-list{list-style:none;display:grid;gap:8px;margin:0 0 4px;font:13.5px/1.55 'JetBrains Mono',monospace;color:var(--dim)}
+.d-list li::before{content:"? ";color:var(--accent-ink);font-weight:800}
+.d-list li.ok{color:var(--head)}
+.d-list li.ok::before{content:"✓ ";color:#1fa83a}
+.dt{border:0;background:none;padding:0;cursor:default;font:inherit;line-height:1}
+.dt-spark{position:absolute;top:10px;right:26px;font-size:15px;color:var(--accent);opacity:.2;transition:opacity .2s}
+.dt-spark:hover{opacity:.9}
+.dt-hammer{font-size:12px;opacity:.3;margin-left:8px;transition:opacity .2s}
+.dt-hammer:hover{opacity:.9}
+.status .dt-dot{width:9px;height:9px;border-radius:50%;background:#27c93f;animation:pulse 2s infinite;flex:none}
+html.fx-dm .dt{cursor:pointer;opacity:1;outline:2px dashed var(--accent);outline-offset:4px;border-radius:50%;animation:dtGlow 1.6s ease-in-out infinite}
+@keyframes dtGlow{50%{outline-color:transparent}}
+.dpill{position:fixed;left:18px;bottom:70px;z-index:66;background:var(--head);color:var(--bg);font:700 12px 'JetBrains Mono',monospace;border:0;border-radius:99px;padding:9px 14px;cursor:pointer;box-shadow:0 10px 26px rgba(0,0,0,.25)}
+
+/* footer links wrap on small phones (6 links were forcing the page wider) */
+footer .wrap>p:first-of-type{display:flex;flex-wrap:wrap;justify-content:center;row-gap:6px}
 </style>
 <script>try{var P=JSON.parse(localStorage.getItem('palette')||'null'),H=/^#[0-9a-f]{6}$/i;if(P&&H.test(P.t)&&H.test(P.p)){var S=document.documentElement.style;S.setProperty('--teal',P.t);S.setProperty('--pink',P.p)}}catch(e){}</script>
 </head>
@@ -298,7 +343,7 @@ kbd{font:600 11.5px 'JetBrains Mono',monospace;border:1px solid var(--line);bord
 <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
 <div class="wrap hgrid">
 <div>
-<p class="status rv"><i aria-hidden="true"></i><span><span id="greet">Hello</span> · open to internships &amp; freelance work</span></p>
+<p class="status rv"><button type="button" class="dt dt-dot" data-dt="3" aria-label="Hidden item: a green dot (for Detective mode)"></button><span><span id="greet">Hello</span> · open to internships &amp; freelance work</span></p>
 <h1 id="page-title" class="rv">I build fast, <em>search-friendly</em> websites.
 <span class="h1-sub">Shankar Saini · Web Developer &amp; SEO Executive in Jaipur</span></h1>
 <p class="lead rv">BCA student and former SEO Executive who optimized 22+ client websites. Now I build responsive sites with HTML, CSS and JavaScript, with SEO baked in from the very first line.</p>
@@ -377,13 +422,30 @@ kbd{font:600 11.5px 'JetBrains Mono',monospace;border:1px solid var(--line);bord
 <div class="bt-i" aria-hidden="true">🤝</div>
 <h3>Need a small website?</h3>
 <p>I also take on small freelance projects. Tell me what you need and I'll tell you honestly if I'm the right fit.</p>
-<a class="more" href="/contact">Start a conversation →</a>
+<a class="more" href="/web-development">See how I work →</a>
 </article>
 </div>
 </div></section>
 
+<!-- ===================== VISITOR TEST ===================== -->
+<section class="sec" id="visitor" aria-labelledby="vis-h"><div class="wrap">
+<h2 id="vis-h" class="rv">Let's see what kind of visitor you are 👀</h2>
+<p class="lead rv">Why did you stop by? Pick one and I'll point you to the good stuff.</p>
+<div class="vchoices rv" role="group" aria-label="Why did you visit?">
+<button type="button" class="vc" data-k="dev" aria-pressed="false">👨‍💻 Developer</button>
+<button type="button" class="vc" data-k="seo" aria-pressed="false">🔍 SEO person</button>
+<button type="button" class="vc" data-k="design" aria-pressed="false">🎨 Designer</button>
+<button type="button" class="vc" data-k="explore" aria-pressed="false">👀 Just exploring</button>
+</div>
+<div class="vres" id="vres" role="status" aria-live="polite" hidden>
+<p class="vmsg" id="vmsg"></p>
+<ol class="vpath" id="vpath"></ol>
+</div>
+</div></section>
+
 <!-- ===================== NUMBERS ===================== -->
-<section class="sec" aria-labelledby="num-h" style="background:var(--bg2)"><div class="wrap">
+<section class="sec" aria-labelledby="num-h" style="background:var(--bg2)"><div class="wrap" style="position:relative">
+<button type="button" class="dt dt-spark" data-dt="2" aria-label="Hidden item: a sparkle (for Detective mode)">✦</button>
 <h2 id="num-h" class="rv" style="text-align:center">By the numbers</h2>
 <div class="stats rv">
 <div class="stat"><b data-to="22" data-suf="+">22+</b><span>WEBSITES OPTIMIZED</span></div>
@@ -432,6 +494,12 @@ kbd{font:600 11.5px 'JetBrains Mono',monospace;border:1px solid var(--line);bord
 <h2 id="jr-h">My journey so far</h2>
 <a class="btn" href="/about">Read my story →</a>
 </div>
+<div class="tm rv">
+<p class="tm-l" id="tm-h">Portfolio time machine ⏳ <small>drag the slider</small></p>
+<input type="range" id="tm" min="0" max="3" step="1" value="2" aria-labelledby="tm-h" aria-valuetext="Now · Building">
+<div class="tm-ticks" aria-hidden="true"><span>2025</span><span>Aug 2026</span><span>Now</span><span>Next</span></div>
+<div id="tmc" aria-live="polite"></div>
+</div>
 <div class="tl">
 <div class="rv" style="--c:var(--accent)"><h3>Learning Web Development</h3><div class="when">Self-taught · Sep 2026 – Present</div><p>Building a solid foundation in HTML5, CSS3 and JavaScript through hands-on projects. This is now my main focus, with SEO as a strong second skill.</p></div>
 <div class="rv" style="--c:var(--teal)"><h3>SEO Executive</h3><div class="when">Appco Software · Jun 2025 – Aug 2026</div><p>On-page, off-page, technical and local SEO across 22+ client websites. WordPress and Shopify content and product management.</p></div>
@@ -470,6 +538,19 @@ kbd{font:600 11.5px 'JetBrains Mono',monospace;border:1px solid var(--line);bord
 <div class="fun-top"><span class="badge p">REFLEX TEST</span><h3>How fast can you click a bug?</h3><span class="fun-score" id="rBest"></span></div>
 <div class="reflex-box" id="rBox" role="button" tabindex="0" aria-label="Reflex area"><span id="rText">Press Start, then click when it turns green</span></div>
 <button class="btn" id="rBtn" type="button" style="margin-top:0">Start</button>
+</div>
+
+<div class="fun-card rv">
+<div class="fun-top"><span class="badge">CATCH THE BUG</span><h3>Squash 5 bugs</h3><span class="fun-score" id="bScore">0/5</span></div>
+<div class="arena" id="arena"><button class="bug" id="bug" type="button" aria-label="A bug. Click it!" hidden>🐛</button><span class="arena-msg" id="bMsg">Press Start, then click the bug</span></div>
+<button class="btn" id="bBtn" type="button">Start</button>
+</div>
+
+<div class="fun-card rv" id="dcard">
+<div class="fun-top"><span class="badge a">DETECTIVE MODE</span><h3>Find 3 hidden things</h3><span class="fun-score" id="dScore">0/3</span></div>
+<p style="color:var(--dim);font-size:14px;margin-bottom:12px">Switch it on, then explore the page. Each clue points to something small, hiding in plain sight.</p>
+<ul class="d-list" id="dList"></ul>
+<button class="btn" id="dBtn" type="button">🔎 Start detective mode</button>
 </div>
 
 <button class="fun-card fact rv" id="fact" type="button">
@@ -557,7 +638,7 @@ kbd{font:600 11.5px 'JetBrains Mono',monospace;border:1px solid var(--line);bord
 
 <footer><div class="wrap">
 <p><a href="mailto:shankarsaini8107@gmail.com">Email</a><a href="https://github.com/shankar-saini" target="_blank" rel="noopener me">GitHub</a><a href="https://www.linkedin.com/in/shankar-saini/" target="_blank" rel="noopener me">LinkedIn</a><a href="https://x.com/shankar_saini_5" target="_blank" rel="noopener me">X</a><a href="https://www.instagram.com/shankar_saini.523/" target="_blank" rel="noopener me">Instagram</a><a href="Shankar_Saini_Resume.pdf" download>Resume</a></p>
-<p style="margin-top:14px">© 2026 Shankar Saini · Web Developer &amp; SEO Executive, Jaipur</p>
+<p style="margin-top:14px">© 2026 Shankar Saini · Web Developer &amp; SEO Executive, Jaipur<button type="button" class="dt dt-hammer" data-dt="1" aria-label="Hidden item: a tiny hammer (for Detective mode)">🛠️</button></p>
 </div></footer>
 
 <!-- command palette -->
@@ -816,6 +897,7 @@ var CMDS=[
 {l:'Go to Skills',h:'page',r:go('/skills')},
 {l:'Go to Projects',h:'page',r:go('/projects')},
 {l:'Go to Field notes',h:'page',r:go('/field-notes')},
+{l:'Go to Web development services',h:'page',r:go('/web-development')},
 {l:'Go to Contact',h:'page',r:go('/contact')},
 {l:'Run the SEO X-Ray',h:'about page',r:go('/about#xray-sec')},
 {l:'Toggle dark mode',h:'action',r:function(){th.click()}},
@@ -862,7 +944,99 @@ if(r.ok){fn.classList.add('show');f.reset();boomEl(send)}
 else{err.textContent='Something went wrong. Please use the email link instead.';err.hidden=false}
 }).catch(function(){err.textContent='Network problem. Please check your connection or email me directly.';err.hidden=false}).then(function(){send.textContent=lab;send.disabled=false});
 });
+
+/* ---------- visitor test ---------- */
+var VC={
+dev:{m:"Okay, let's talk code. 👨‍💻",p:[["See the code behind this portfolio","https://github.com/shankar-saini/shankar-saini.github.io",true],["Projects I built by hand","/projects"],["Field note: don't hide content behind JavaScript","/field-notes#no-js-content"]]},
+seo:{m:"Aha… finally someone who understands meta descriptions. 😌",p:[["Run the live SEO X-Ray on this site","/about#xray-sec"],["Field note: canonical, 301 or noindex","/field-notes#canonical-vs-redirect"],["My SEO skills, with proof","/skills"]]},
+design:{m:"A designer! I'm a developer first, but I care a lot about how things feel. 🎨",p:[["Repaint this whole site in the colour lab","#colorlab"],["Flip between light and dark","fn:theme"],["The travel website build","/projects#featured"]]},
+explore:{m:"Fair enough. Take a look around. 😄",p:[["Take the 30-second tour: my journey","#journey"],["Play a quick game","#fun"],["Surprise me with a field note","fn:note"]]}
+};
+var NOTES=['core-web-vitals','title-tags','meta-descriptions','canonical-vs-redirect','local-seo','schema-truth','no-js-content','cms-checks','images-speed'];
+var vcs=[].slice.call(document.querySelectorAll('.vc')),vres=$('vres'),vmsg=$('vmsg'),vpath=$('vpath');
+function goTo(sel){var t=document.querySelector(sel);if(t)t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})}
+function stepItem(s){
+var li=el('li'),node;
+if(s[1]==='fn:theme'){node=el('button',null,s[0]);node.type='button';node.onclick=function(){th.click();toast('Switched. Easy on the eyes.')}}
+else if(s[1]==='fn:note'){node=el('button',null,s[0]);node.type='button';node.onclick=function(){location.href='/field-notes#'+NOTES[Math.floor(Math.random()*NOTES.length)]}}
+else if(s[1].charAt(0)==='#'){node=el('button',null,s[0]);node.type='button';node.onclick=function(){goTo(s[1])}}
+else{node=el('a',null,s[0]);node.href=s[1];if(s[2]){node.target='_blank';node.rel='noopener'}}
+li.appendChild(node);return li;
+}
+vcs.forEach(function(b){b.addEventListener('click',function(){
+var c=VC[b.dataset.k];
+vcs.forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+vmsg.textContent=c.m;vpath.textContent='';
+c.p.forEach(function(s){vpath.appendChild(stepItem(s))});
+vres.hidden=false;
+})});
+
+/* ---------- portfolio time machine ---------- */
+var TM=[
+{t:'2025 · SEO first',p:'Joined Appco Software as an SEO Executive in June 2025 and learned how search engines read websites.',c:['On-page SEO','Technical SEO','Local SEO','WordPress','Shopify']},
+{t:'Aug 2026 · Looking at the code',p:'Wrapped up the SEO job after 22+ client websites, and turned my full attention to building websites.',c:['HTML5','CSS3','Hands-on projects']},
+{t:'Now · Building',p:'Web development is my main focus: JavaScript, six projects, field notes, and this portfolio with a live SEO X-Ray.',c:['JavaScript','6 projects','Field notes','SEO X-Ray','Core Web Vitals']},
+{t:'Next · The plan',p:'Goals, not promises: React, working with APIs, and growing towards full-stack, plus a Google certification.',c:['React','APIs','Full-stack','Google certification']}
+];
+var tmR=$('tm'),tmBox=$('tmc');
+function paintTm(){
+var s=TM[+tmR.value];tmR.setAttribute('aria-valuetext',s.t);tmBox.textContent='';
+var card=el('div','tm-card');card.appendChild(el('h3',null,s.t));card.appendChild(el('p',null,s.p));
+var cw=el('div');s.c.forEach(function(x){cw.appendChild(el('span','chip',x))});card.appendChild(cw);tmBox.appendChild(card);
+}
+tmR.addEventListener('input',paintTm);paintTm();
+
+/* ---------- catch the bug ---------- */
+var bS=0,bOn=false,bT,bug=$('bug'),arena=$('arena'),bMsg=$('bMsg'),bBtn=$('bBtn'),bScore=$('bScore');
+function moveBug(){var mx=arena.clientWidth-bug.offsetWidth-6,my=arena.clientHeight-bug.offsetHeight-6;bug.style.left=Math.max(6,Math.random()*mx)+'px';bug.style.top=Math.max(6,Math.random()*my)+'px'}
+function stopBug(){clearInterval(bT);bOn=false;bug.hidden=true}
+bBtn.addEventListener('click',function(){
+stopBug();bS=0;bScore.textContent='0/5';bOn=true;bug.hidden=false;bMsg.textContent='Squash 5 bugs!';moveBug();
+bT=setInterval(moveBug,reduce?1500:950);bBtn.textContent='Restart';
+});
+bug.addEventListener('click',function(e){
+if(!bOn)return;
+bS++;bScore.textContent=bS+'/5';boom(e.clientX,e.clientY);
+if(bS>=5){stopBug();bMsg.textContent='5 bugs squashed. QA approves. ✅';bBtn.textContent='Play again'}
+else{clearInterval(bT);moveBug();bT=setInterval(moveBug,reduce?1500:950)}
+});
+
+/* ---------- detective mode ---------- */
+var FOUND=[];try{FOUND=JSON.parse(get('fx_found')||'[]')}catch(e){FOUND=[]}
+var dmode=false,dpill=null,dList=$('dList'),dScore=$('dScore'),dBtn=$('dBtn');
+var CL=[null,
+{c:'This website is built from scratch.',a:'Found: the tiny hammer at the very bottom.'},
+{c:'There is something hidden here.',a:'Found: the sparkle next to "By the numbers".'},
+{c:'You may have already passed it. 👀',a:'Found: the green dot at the very top.'}];
+function renderD(){
+dList.textContent='';
+[1,2,3].forEach(function(i){var ok=FOUND.indexOf(i)>-1;dList.appendChild(el('li',ok?'ok':'',ok?CL[i].a:'Clue #'+i+': '+CL[i].c))});
+dScore.textContent=FOUND.length+'/3';
+if(dpill)dpill.textContent='🔎 Detective '+FOUND.length+'/3';
+dBtn.textContent=FOUND.length===3?'↺ Play again':(dmode?'⏹ Stop detective mode':'🔎 Start detective mode');
+}
+function setD(on){
+dmode=on;root.classList.toggle('fx-dm',on);
+if(on&&!dpill){dpill=el('button','dpill');dpill.type='button';dpill.onclick=function(){$('dcard').scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'})};document.body.appendChild(dpill)}
+if(!on&&dpill){dpill.remove();dpill=null}
+renderD();
+}
+dBtn.addEventListener('click',function(){
+if(FOUND.length===3){FOUND=[];set('fx_found','[]');setD(true);toast('Fresh case. Good luck! 🔎');return}
+setD(!dmode);if(dmode)toast('Detective mode on. Read the clues and look around. 🔎');
+});
+document.querySelectorAll('.dt').forEach(function(b){b.addEventListener('click',function(){
+var id=+b.dataset.dt;
+if(!dmode){toast('Shh, a hidden thing. Try Detective mode in "Just for fun".');return}
+if(FOUND.indexOf(id)>-1){toast('You already found this one.');return}
+FOUND.push(id);set('fx_found',JSON.stringify(FOUND));boomEl(b);
+if(FOUND.length===3){toast('🎉 Case solved. Sharp eyes, you found everything!');setTimeout(function(){boom(innerWidth/2,innerHeight/3)},200)}
+else toast('Clue found! '+FOUND.length+'/3');
+renderD();
+})});
+renderD();
 })();
 </script>
+<script src="/fun.js" defer></script>
 </body>
 </html>
