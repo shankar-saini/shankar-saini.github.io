@@ -54,12 +54,12 @@
 {"@type":"ListItem","position":1,"name":"Home","item":"https://shankar-saini.github.io/"},
 {"@type":"ListItem","position":2,"name":"Projects","item":"https://shankar-saini.github.io/projects"}]},
 {"@type":"ItemList","@id":"https://shankar-saini.github.io/projects#list","name":"Web development projects by Shankar Saini","itemListElement":[
-{"@type":"ListItem","position":1,"item":{"@type":"SoftwareSourceCode","name":"Login Page","description":"A clean, validated login form UI practicing layout, form styling and basic input handling.","programmingLanguage":["HTML","CSS"],"author":{"@id":"https://shankar-saini.github.io/#person"}}},
-{"@type":"ListItem","position":2,"item":{"@type":"SoftwareSourceCode","name":"Calculator","description":"A working calculator with core arithmetic operations, and my first real JavaScript logic project.","programmingLanguage":["HTML","CSS","JavaScript"],"author":{"@id":"https://shankar-saini.github.io/#person"}}},
-{"@type":"ListItem","position":3,"item":{"@type":"SoftwareSourceCode","name":"Student Registration Form","description":"A multi-field registration form with structured layout and input validation.","programmingLanguage":["HTML","CSS","JavaScript"],"author":{"@id":"https://shankar-saini.github.io/#person"}}},
-{"@type":"ListItem","position":4,"item":{"@type":"SoftwareSourceCode","name":"To-Do List App","description":"An interactive task manager to add, complete and remove tasks with JavaScript and the DOM.","programmingLanguage":["HTML","CSS","JavaScript"],"author":{"@id":"https://shankar-saini.github.io/#person"}}},
-{"@type":"ListItem","position":5,"item":{"@type":"SoftwareSourceCode","name":"Restaurant Website","description":"A restaurant landing site with menu, about and contact sections designed as one cohesive brand.","programmingLanguage":["HTML","CSS"],"author":{"@id":"https://shankar-saini.github.io/#person"}}},
-{"@type":"ListItem","position":6,"item":{"@type":"SoftwareSourceCode","name":"Travel Website","description":"A responsive travel website with a hero banner, destination cards, a pricing table and a booking form.","programmingLanguage":["HTML","CSS"],"author":{"@id":"https://shankar-saini.github.io/#person"}}}
+{"@type":"ListItem","position":1,"item":{"@type":"SoftwareSourceCode","name":"Login Page","description":"A responsive login page with live validation and a show / hide password button. Demo only.","programmingLanguage":["HTML","CSS","JavaScript"],"url":"https://shankar-saini.github.io/login-page/","codeRepository":"https://github.com/shankar-saini/login-page","author":{"@id":"https://shankar-saini.github.io/#person"}}},
+{"@type":"ListItem","position":2,"item":{"@type":"SoftwareSourceCode","name":"Calculator","description":"A working calculator with keyboard support and chained operations, built without eval().","programmingLanguage":["HTML","CSS","JavaScript"],"url":"https://shankar-saini.github.io/calculator/","codeRepository":"https://github.com/shankar-saini/calculator","author":{"@id":"https://shankar-saini.github.io/#person"}}},
+{"@type":"ListItem","position":3,"item":{"@type":"SoftwareSourceCode","name":"Student Registration Form","description":"A student registration form with field-by-field validation and a summary card. Demo only.","programmingLanguage":["HTML","CSS","JavaScript"],"url":"https://shankar-saini.github.io/registration-form/","codeRepository":"https://github.com/shankar-saini/registration-form","author":{"@id":"https://shankar-saini.github.io/#person"}}},
+{"@type":"ListItem","position":4,"item":{"@type":"SoftwareSourceCode","name":"To-Do List App","description":"A to-do list app to add, complete, filter and delete tasks, saved in the browser.","programmingLanguage":["HTML","CSS","JavaScript"],"url":"https://shankar-saini.github.io/todo-app/","codeRepository":"https://github.com/shankar-saini/todo-app","author":{"@id":"https://shankar-saini.github.io/#person"}}},
+{"@type":"ListItem","position":5,"item":{"@type":"SoftwareSourceCode","name":"Restaurant Website","description":"A vegetarian restaurant demo site with a menu, offers table and reservation form.","programmingLanguage":["HTML","CSS"],"url":"https://shankar-saini.github.io/restaurant-website/","codeRepository":"https://github.com/shankar-saini/restaurant-website","author":{"@id":"https://shankar-saini.github.io/#person"}}},
+{"@type":"ListItem","position":6,"item":{"@type":"SoftwareSourceCode","name":"Travel Website","description":"A responsive travel website with a hero banner, destination cards, a pricing table and a booking form.","programmingLanguage":["HTML","CSS"],"url":"https://shankar-saini.github.io/travel-time/","codeRepository":"https://github.com/shankar-saini/travel-time","author":{"@id":"https://shankar-saini.github.io/#person"}}}
 ]}
 ]
 }
@@ -195,7 +195,7 @@ body{position:relative}
 <li>Hero banner</li><li>Destination cards</li><li>Pricing table</li><li>Booking form</li><li>Responsive layout</li><li>Semantic HTML</li>
 </ul>
 <div class="pl"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip hot">Responsive</span></div>
-<div style="margin-top:16px"><a class="btn pri" href="#" data-repo aria-label="Travel Website code on GitHub (link coming soon)">View code on GitHub ↗</a></div>
+<div style="margin-top:16px"><a class="btn pri" href="https://shankar-saini.github.io/travel-time/" target="_blank" rel="noopener" aria-label="Travel Website: open the live demo in a new tab">Live demo ↗</a><a class="btn" href="https://github.com/shankar-saini/travel-time" target="_blank" rel="noopener me" aria-label="Travel Website: view the code on GitHub">View code on GitHub ↗</a></div>
 </article>
 <div class="browser" role="img" aria-label="Simple diagram of the travel website layout: hero banner, three destination cards, pricing table and booking form">
 <div class="b-bar"><i></i><i></i><i></i><span>my-travel-website</span></div>
@@ -220,61 +220,60 @@ body{position:relative}
 </div>
 <p class="count" id="count" role="status" aria-live="polite">Showing all 6 projects</p>
 
-<!-- TODO: replace each href="#" (data-repo) with the project's GitHub URL once it is uploaded -->
 <div class="projects" id="list">
 
-<article class="card proj rv" data-tags="html" style="--c:var(--teal)">
+<article class="card proj rv" data-tags="html js" style="--c:var(--teal)">
 <div class="lvl">01 · FOUNDATIONS</div><h3>Login Page</h3>
-<p>A clean, validated login form UI, practicing layout, form styling and basic input handling.</p>
-<ul class="prac"><li>Form layout and spacing</li><li>Styling inputs and buttons</li><li>Basic input handling</li></ul>
-<div class="pl"><span class="chip">HTML</span><span class="chip">CSS</span></div>
-<p class="seo"><b>SEO NOTE</b><br>A login page should be <code>noindex</code>. It has nothing for search, so it stays out of results.</p>
-<a class="btn go" href="#" data-repo aria-label="Login Page code on GitHub (link coming soon)">GitHub ↗</a>
+<p>A responsive login page with live validation and a show / hide password button. Demo only: nothing is sent or stored.</p>
+<ul class="prac"><li>Form layout and spacing</li><li>Validating input with JavaScript</li><li>Clear, accessible error messages</li></ul>
+<div class="pl"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div>
+<p class="seo"><b>SEO NOTE</b><br>A real login page should be <code>noindex</code>. This one is a demo with no accounts, so I left it indexable as a portfolio piece.</p>
+<div class="acts"><a class="btn pri" href="https://shankar-saini.github.io/login-page/" target="_blank" rel="noopener" aria-label="Login Page: open the live demo in a new tab">Live demo ↗</a><a class="btn" href="https://github.com/shankar-saini/login-page" target="_blank" rel="noopener me" aria-label="Login Page: view the code on GitHub">GitHub ↗</a></div>
 </article>
 
 <article class="card proj rv" data-tags="js" style="--c:var(--teal)">
 <div class="lvl">02 · FOUNDATIONS</div><h3>Calculator</h3>
-<p>A working calculator with core arithmetic operations, my first real JavaScript logic project.</p>
-<ul class="prac"><li>Handling button clicks with events</li><li>Arithmetic and state in JavaScript</li><li>Connecting logic to the display</li></ul>
+<p>A working calculator with keyboard support, chained operations and a clear error for divide-by-zero. No <code>eval()</code>.</p>
+<ul class="prac"><li>Handling clicks and key presses</li><li>Keeping calculator state in JavaScript</li><li>Avoiding float errors like 0.1 + 0.2</li></ul>
 <div class="pl"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div>
-<p class="seo"><b>SEO NOTE</b><br>A tool people search for ("online calculator") needs helpful text around it, not just the widget.</p>
-<a class="btn go" href="#" data-repo aria-label="Calculator code on GitHub (link coming soon)">GitHub ↗</a>
+<p class="seo"><b>SEO NOTE</b><br>A tool people search for ("online calculator") needs helpful text around it, not just the widget. It also carries <code>WebApplication</code> schema.</p>
+<div class="acts"><a class="btn pri" href="https://shankar-saini.github.io/calculator/" target="_blank" rel="noopener" aria-label="Calculator: open the live demo in a new tab">Live demo ↗</a><a class="btn" href="https://github.com/shankar-saini/calculator" target="_blank" rel="noopener me" aria-label="Calculator: view the code on GitHub">GitHub ↗</a></div>
 </article>
 
 <article class="card proj rv" data-tags="js html" style="--c:var(--accent)">
 <div class="lvl">03 · FORMS &amp; DATA</div><h3>Student Registration Form</h3>
-<p>A multi-field registration form with structured layout and input validation for real-world data entry.</p>
-<ul class="prac"><li>Structuring a long form clearly</li><li>Validating input before submit</li><li>Labels and field types that make sense</li></ul>
+<p>A student registration form that checks each field as you go, then shows a summary card. Demo only: nothing is sent.</p>
+<ul class="prac"><li>Structuring a long form clearly</li><li>Field-by-field validation (email, mobile, date of birth)</li><li>Labels and field types that make sense</li></ul>
 <div class="pl"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div>
 <p class="seo"><b>SEO NOTE</b><br>Real <code>&lt;label&gt;</code> elements help accessibility, which supports the same page-experience goals search engines care about.</p>
-<a class="btn go" href="#" data-repo aria-label="Student Registration Form code on GitHub (link coming soon)">GitHub ↗</a>
+<div class="acts"><a class="btn pri" href="https://shankar-saini.github.io/registration-form/" target="_blank" rel="noopener" aria-label="Student Registration Form: open the live demo in a new tab">Live demo ↗</a><a class="btn" href="https://github.com/shankar-saini/registration-form" target="_blank" rel="noopener me" aria-label="Student Registration Form: view the code on GitHub">GitHub ↗</a></div>
 </article>
 
 <article class="card proj rv" data-tags="js" style="--c:var(--accent)">
 <div class="lvl">04 · INTERACTIVE APP</div><h3>To-Do List App</h3>
-<p>An interactive task manager: add, complete and remove tasks entirely with JavaScript and the DOM.</p>
-<ul class="prac"><li>Creating and removing DOM elements</li><li>Marking tasks complete</li><li>Thinking in small, reusable functions</li></ul>
+<p>An interactive task manager: add, complete, filter and delete tasks, saved in the browser with localStorage.</p>
+<ul class="prac"><li>Creating and removing DOM elements</li><li>Saving data with localStorage</li><li>Thinking in small, reusable functions</li></ul>
 <div class="pl"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span></div>
-<p class="seo"><b>SEO NOTE</b><br>Content added by JavaScript is invisible to a plain crawler, so anything meant to rank should be in the HTML.</p>
-<a class="btn go" href="#" data-repo aria-label="To-Do List App code on GitHub (link coming soon)">GitHub ↗</a>
+<p class="seo"><b>SEO NOTE</b><br>Tasks are added by JavaScript, so a plain crawler cannot see them. Anything meant to rank should be in the HTML.</p>
+<div class="acts"><a class="btn pri" href="https://shankar-saini.github.io/todo-app/" target="_blank" rel="noopener" aria-label="To-Do List App: open the live demo in a new tab">Live demo ↗</a><a class="btn" href="https://github.com/shankar-saini/todo-app" target="_blank" rel="noopener me" aria-label="To-Do List App: view the code on GitHub">GitHub ↗</a></div>
 </article>
 
 <article class="card proj rv" data-tags="html" style="--c:var(--pink)">
 <div class="lvl">05 · MULTI-SECTION SITE</div><h3>Restaurant Website</h3>
-<p>A full restaurant landing site with menu, about and contact sections designed as one cohesive brand.</p>
+<p>A vegetarian restaurant demo site with a menu, offers table, reservation form and contact section, all in one brand look.</p>
 <ul class="prac"><li>Planning a page with several sections</li><li>Keeping one consistent visual identity</li><li>A contact section people can act on</li></ul>
 <div class="pl"><span class="chip">HTML</span><span class="chip">CSS</span></div>
-<p class="seo"><b>SEO NOTE</b><br>A restaurant is a local-SEO case: name, address, phone, hours and <code>Restaurant</code> schema all belong on the page.</p>
-<a class="btn go" href="#" data-repo aria-label="Restaurant Website code on GitHub (link coming soon)">GitHub ↗</a>
+<p class="seo"><b>SEO NOTE</b><br>A real restaurant needs name, address, phone, hours and <code>Restaurant</code> schema. Mine is a demo, so I used sample details instead of inventing a business.</p>
+<div class="acts"><a class="btn pri" href="https://shankar-saini.github.io/restaurant-website/" target="_blank" rel="noopener" aria-label="Restaurant Website: open the live demo in a new tab">Live demo ↗</a><a class="btn" href="https://github.com/shankar-saini/restaurant-website" target="_blank" rel="noopener me" aria-label="Restaurant Website: view the code on GitHub">GitHub ↗</a></div>
 </article>
 
 <article class="card proj rv" data-tags="html responsive" style="--c:var(--pink)">
 <div class="lvl">06 · MOST COMPLETE</div><h3>Travel Website</h3>
-<p>Hero banner, destination cards, a pricing table and a working booking form, fully responsive.</p>
+<p>An India travel guide with a hero banner, destination cards, a packages table and a booking form, fully responsive.</p>
 <ul class="prac"><li>Mobile-first responsive layout</li><li>Cards, tables and forms working together</li><li>Turning separate sections into one site</li></ul>
 <div class="pl"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip hot">Responsive</span></div>
 <p class="seo"><b>SEO NOTE</b><br>Each destination could become its own page with a unique title, descriptive alt text and internal links.</p>
-<a class="btn go" href="#" data-repo aria-label="Travel Website code on GitHub (link coming soon)">GitHub ↗</a>
+<div class="acts"><a class="btn pri" href="https://shankar-saini.github.io/travel-time/" target="_blank" rel="noopener" aria-label="Travel Website: open the live demo in a new tab">Live demo ↗</a><a class="btn" href="https://github.com/shankar-saini/travel-time" target="_blank" rel="noopener me" aria-label="Travel Website: view the code on GitHub">GitHub ↗</a></div>
 </article>
 
 </div>
@@ -350,7 +349,6 @@ var f=b.dataset.f,shown=0;
 cards.forEach(function(c){var ok=f==='all'||c.dataset.tags.split(' ').indexOf(f)>-1;c.hidden=!ok;if(ok)shown++});
 count.textContent=f==='all'?'Showing all '+total+' projects':'Showing '+shown+' of '+total+' projects';
 })});
-document.querySelectorAll('a[data-repo]').forEach(function(a){var t=a.textContent;a.addEventListener('click',function(e){if(a.getAttribute('href')!=='#')return;e.preventDefault();a.textContent='Repo coming soon';setTimeout(function(){a.textContent=t},1600)})});
 })();
 </script>
 <button class="totop" id="totop" type="button" aria-label="Back to top">↑</button>
