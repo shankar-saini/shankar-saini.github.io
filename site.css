@@ -163,6 +163,7 @@ h1 .h1-sub{display:block;margin-top:14px;font:500 clamp(13px,1.8vw,16px)/1.5 'Je
 .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:22px}
 .proj{display:flex;flex-direction:column}
 .proj .go{margin-top:auto;align-self:flex-start;margin-bottom:0}
+.proj .acts{margin-top:auto;display:flex;flex-wrap:wrap;gap:10px}.proj .acts .btn{margin:0}
 .proj .seo{margin:14px 0 18px}
 
 /* ---------- Buttons ---------- */
