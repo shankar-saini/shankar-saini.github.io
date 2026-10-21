@@ -50,7 +50,7 @@
 <link rel="alternate" type="application/rss+xml" title="Shankar Saini | Field Notes" href="feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="banner-1.jpg" media="(min-width:769px)" fetchpriority="high">
+<link rel="preload" as="image" href="banner-2.jpg" media="(min-width:769px)" fetchpriority="high">
 <link rel="stylesheet" href="site.css">
 
 <script>try{var d=document.documentElement;if(localStorage.getItem('theme')!=='light')d.dataset.theme='dark';if(sessionStorage.getItem('splash')||matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('nosplash')}catch(e){}</script>
@@ -921,7 +921,7 @@ var box=d.getElementById('hmSlides'),vid=d.getElementById('hmVideo');if(!box||!v
 var started=false;
 function start(){
 if(started||!mq.matches)return;started=true;
-var names=['banner-1.jpg','banner-2.jpg','banner-3.jpg','banner-4.jpg'],imgs=[];
+var names=['banner-2.jpg','banner-1.jpg','banner-3.jpg','banner-4.jpg'],imgs=[];
 names.forEach(function(n,i){var im=new Image();im.src=n;im.alt='';im.width=1920;im.height=1080;im.decoding='async';if(i)im.loading='lazy';if(!i)im.className='on';box.appendChild(im);imgs.push(im)});
 if(!rm){var k=0;setInterval(function(){if(d.hidden||d.documentElement.classList.contains('vid-on'))return;imgs[k].classList.remove('on');k=(k+1)%imgs.length;imgs[k].classList.add('on')},6000)}
 var c=navigator.connection||{},slow=c.saveData||/(^|-)2g$|3g/.test(c.effectiveType||'');
