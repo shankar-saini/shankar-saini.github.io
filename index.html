@@ -50,9 +50,10 @@
 <link rel="alternate" type="application/rss+xml" title="Shankar Saini | Field Notes" href="feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="banner-1.jpg" media="(min-width:769px)" fetchpriority="high">
 <link rel="stylesheet" href="site.css">
 
-<script>try{var d=document.documentElement;if(localStorage.getItem('theme')==='dark')d.dataset.theme='dark';if(sessionStorage.getItem('splash')||matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('nosplash')}catch(e){}</script>
+<script>try{var d=document.documentElement;if(localStorage.getItem('theme')!=='light')d.dataset.theme='dark';if(sessionStorage.getItem('splash')||matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('nosplash')}catch(e){}</script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q1R4DN3MT4"></script>
@@ -105,7 +106,7 @@
 <div class="ctl">
 <button class="ico" id="kbtn" aria-label="Open quick navigation (Ctrl K)" title="Quick navigation (Ctrl+K)">⌘</button>
 <button class="ico" id="th" aria-label="Toggle dark mode" title="Toggle theme">🌙</button>
-<input type="color" id="cp" class="ico" value="#e08a1e" aria-label="Pick your accent color" title="Pick your accent color">
+<input type="color" id="cp" class="ico" value="#3d8bff" aria-label="Pick your accent color" title="Pick your accent color">
 <div class="nudge-pop" id="nudge" role="status" hidden>
 🎨 Psst! Tap this colour dot to repaint the whole site.<br>
 <button type="button" id="nudgeGo">Surprise me</button><button type="button" class="x" id="nudgeX">got it</button>
@@ -116,7 +117,12 @@
 <main id="main">
 
 <!-- ===================== HERO ===================== -->
-<section class="hero hero-home" aria-labelledby="page-title">
+<section class="hero hero-home cine" aria-labelledby="page-title">
+<div class="hero-media" id="heroMedia" aria-hidden="true">
+<div class="hm-slides" id="hmSlides"></div>
+<video class="hm-video" id="hmVideo" muted loop playsinline preload="none" data-src="hero-video.mp4"></video>
+<div class="hm-shade"></div>
+</div>
 <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
 <div class="wrap hgrid">
 <div>
@@ -173,8 +179,11 @@
 
 <!-- ===================== WHAT I DO ===================== -->
 <section class="sec" id="what" aria-labelledby="what-h"><div class="wrap">
+<div class="wgrid"><div>
 <h2 id="what-h" class="rv">What I do</h2>
 <p class="lead rv">Two skills that usually live in two different people. I keep them in one, so a site is built right <em style="font-style:normal;color:var(--accent-ink)">and</em> gets found.</p>
+</div>
+<figure class="shot rv"><img src="what-i-do.png" width="1200" height="900" loading="lazy" decoding="async" alt="Illustration of web development, SEO and responsive design work on one screen"></figure></div>
 <div class="bento" style="margin-top:28px">
 <article class="bt spot w3 rv" style="--c:var(--teal)">
 <div class="bt-i" aria-hidden="true">💻</div>
@@ -228,6 +237,8 @@
 </div></section>
 
 <!-- ===================== NUMBERS ===================== -->
+<aside class="mob-banner" aria-hidden="true"><img src="banner-1.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt=""></aside>
+
 <section class="sec" aria-labelledby="num-h" style="background:var(--bg2)"><div class="wrap" style="position:relative">
 <button type="button" class="dt dt-spark" data-dt="2" aria-label="Hidden item: a sparkle (for Detective mode)">✦</button>
 <h2 id="num-h" class="rv" style="text-align:center">By the numbers</h2>
@@ -290,6 +301,7 @@
 <h2 id="jr-h">My journey so far</h2>
 <a class="btn" href="/about">Read my story →</a>
 </div>
+<figure class="strip rv"><img src="journey.png" width="1600" height="700" loading="lazy" decoding="async" alt="From SEO dashboards to a code editor: the shift from SEO work to web development"></figure>
 <div class="tm rv">
 <p class="tm-l" id="tm-h">Portfolio time machine ⏳ <small>drag the slider</small></p>
 <input type="range" id="tm" min="0" max="3" step="1" value="2" aria-labelledby="tm-h" aria-valuetext="Now · Building">
@@ -379,14 +391,14 @@
 <button class="sw" type="button" data-c="#7c3aed" style="--s:#7c3aed" aria-label="Violet" aria-pressed="false"></button>
 <button class="sw" type="button" data-c="#0284c7" style="--s:#0284c7" aria-label="Ocean" aria-pressed="false"></button>
 <button class="sw" type="button" data-c="#059669" style="--s:#059669" aria-label="Emerald" aria-pressed="false"></button>
-<span class="sw sw-custom" title="Pick any colour"><input type="color" id="labColor" value="#e08a1e" aria-label="Pick a custom colour"></span>
+<span class="sw sw-custom" title="Pick any colour"><input type="color" id="labColor" value="#3d8bff" aria-label="Pick a custom colour"></span>
 </div>
 <div class="lab-act rv">
 <button class="btn pri" type="button" id="surprise">🎲 Surprise me</button>
 <button class="btn" type="button" id="rainbow">🌈 Rainbow</button>
 <button class="btn" type="button" id="shufflePal">🎨 Shuffle palette</button>
 <button class="btn" type="button" id="resetC">↺ Reset</button>
-<p class="hex">Current accent: <b id="hex">#E08A1E</b></p>
+<p class="hex">Current accent: <b id="hex">#3D8BFF</b></p>
 </div>
 </div>
 <div class="preview rv" aria-hidden="true">
@@ -481,7 +493,7 @@ an.onfinish=(function(n){return function(){n.remove()}})(p);
 function boomEl(e){var r=e.getBoundingClientRect();boom(r.left+r.width/2,r.top+r.height/2)}
 
 /* ---------- accent colour engine ---------- */
-var cp=$('cp'),DEF='#e08a1e',sws=[].slice.call(document.querySelectorAll('.sw[data-c]'));
+var cp=$('cp'),DEF='#3d8bff',sws=[].slice.call(document.querySelectorAll('.sw[data-c]'));
 function onAccent(c){var n=parseInt(c.slice(1),16),r=n>>16,g=(n>>8)&255,b=n&255;var L=(0.299*r+0.587*g+0.114*b)/255;root.style.setProperty('--on-accent',L>0.6?'#0a0d12':'#ffffff')}
 var pals=[].slice.call(document.querySelectorAll('.pal'));
 function curPal(){try{return JSON.parse(get('palette')||'null')}catch(e){return null}}
@@ -898,6 +910,29 @@ if(mega){
   if(fine){mega.parentNode.parentNode.addEventListener('pointermove',function(e){var r=mega.getBoundingClientRect();mega.style.setProperty('--fx',((e.clientX-r.left)/r.width*100)+'%');mega.style.setProperty('--fy',((e.clientY-r.top)/r.height*100)+'%')})}
   else if(!reduce)mega.classList.add('auto');
 }
+})();
+</script>
+
+<script>
+/* hero media: slideshow + video (desktop only, respects reduced-motion / data saver) */
+(function(){
+var d=document,mq=matchMedia('(min-width:769px)'),rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var box=d.getElementById('hmSlides'),vid=d.getElementById('hmVideo');if(!box||!vid)return;
+var started=false;
+function start(){
+if(started||!mq.matches)return;started=true;
+var names=['banner-1.jpg','banner-2.jpg','banner-3.jpg','banner-4.jpg'],imgs=[];
+names.forEach(function(n,i){var im=new Image();im.src=n;im.alt='';im.width=1920;im.height=1080;im.decoding='async';if(i)im.loading='lazy';if(!i)im.className='on';box.appendChild(im);imgs.push(im)});
+if(!rm){var k=0;setInterval(function(){if(d.hidden||d.documentElement.classList.contains('vid-on'))return;imgs[k].classList.remove('on');k=(k+1)%imgs.length;imgs[k].classList.add('on')},6000)}
+var c=navigator.connection||{},slow=c.saveData||/(^|-)2g$|3g/.test(c.effectiveType||'');
+if(rm||slow)return;
+vid.src=vid.getAttribute('data-src');
+vid.addEventListener('playing',function(){d.documentElement.classList.add('vid-on')});
+vid.addEventListener('error',function(){d.documentElement.classList.remove('vid-on')});
+var p=vid.play();if(p&&p.catch)p.catch(function(){});
+d.addEventListener('visibilitychange',function(){if(d.hidden)vid.pause();else if(mq.matches){var q=vid.play();if(q&&q.catch)q.catch(function(){})}});
+}
+start();if(mq.addEventListener)mq.addEventListener('change',start);
 })();
 </script>
 </body>
