@@ -306,10 +306,11 @@ html[data-mood=minimal] .mega::after{display:none}
   .hm-slides,.hm-video{position:absolute;inset:0;width:100%;height:100%}
   .hm-slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.06);transition:opacity 1.4s ease,transform 9s ease-out}
   .hm-slides img.on{opacity:1;transform:scale(1)}
-  .hm-video{object-fit:cover;opacity:0;transition:opacity 1.2s ease}
+  .hm-video{object-fit:cover;opacity:0;transition:opacity 1.2s ease;filter:brightness(.72) saturate(.8) contrast(1.08)}
   .vid-on .hm-video{opacity:1}
   .hm-shade{position:absolute;inset:0;background:
-    linear-gradient(90deg,rgba(5,7,13,.86) 0%,rgba(5,7,13,.58) 46%,rgba(5,7,13,.28) 100%),
+    linear-gradient(90deg,rgba(5,7,13,.88) 0%,rgba(5,7,13,.52) 45%,rgba(5,7,13,.08) 100%),
+    linear-gradient(rgba(6,14,40,.12),rgba(6,14,40,.12)),
     radial-gradient(900px 420px at 85% 15%,rgba(61,139,255,.22),transparent 70%),
     radial-gradient(700px 360px at 8% 100%,rgba(255,77,94,.16),transparent 70%),
     linear-gradient(180deg,transparent 70%,var(--bg))}
